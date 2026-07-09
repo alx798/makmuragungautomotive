@@ -11,3 +11,8 @@ desktop.ini
 # tweaks-panel.jsx
 # screenshots/
 # _ds/
+
+# Dev-only (local preview / test tooling)
+.claude/
+.playwright-mcp/
+node_modules/
