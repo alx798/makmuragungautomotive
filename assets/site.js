@@ -90,7 +90,7 @@
       '<footer class="footer"><div class="wrap">' +
         '<div class="footer__grid">' +
           '<div>' + logo() +
-            '<p class="footer__blurb">Reseller resmi Aozoom & workshop retrofit lampu mobil di Malang. Lebih terang, lebih jauh, lebih tajam \u2014 dipasang teknisi bersertifikat.</p>' +
+            '<p class="footer__blurb">Reseller resmi Aozoom & workshop retrofit lampu mobil di Malang. Lebih terang, lebih jauh, lebih tajam, dipasang teknisi bersertifikat.</p>' +
             '<div class="footer__social">' +
               '<a class="icon-btn" href="' + WA_LINK + '" target="_blank" rel="noopener" title="WhatsApp">' + wa(19, 'ffffff') + '</a>' +
               '<a class="icon-btn" href="' + IG_LINK + '" target="_blank" rel="noopener" title="Instagram">' + ig(19, 'ffffff') + '</a>' +
@@ -109,7 +109,7 @@
           '<div class="footer__col"><h4>Workshop</h4>' +
             '<p>' + ADDRESS + '</p>' +
             '<a href="tel:+' + WA_NUMBER + '">' + WA_DISPLAY + '</a>' +
-            '<p>Senin\u2013Sabtu \u00b7 09.00\u201318.00<br>Minggu tutup</p>' +
+            '<p>Senin\u2013Sabtu \u00b7 08.30 \u2013 17.00<br>Minggu tutup</p>' +
           '</div>' +
         '</div>' +
         '<div class="footer__bottom">' +
