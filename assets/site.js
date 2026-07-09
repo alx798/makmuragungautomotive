@@ -18,12 +18,12 @@
   window.MA = { WA_NUMBER: WA_NUMBER, WA_LINK: WA_LINK, WA_DISPLAY: WA_DISPLAY, IG_LINK: IG_LINK, IG_HANDLE: IG_HANDLE, ADDRESS: ADDRESS, MAPS_LINK: MAPS_LINK };
 
   var PAGES = [
-    ['beranda',   'Beranda',   'index.html'],
-    ['layanan',   'Layanan',   'Layanan.html'],
-    ['produk',    'Produk',    'Produk.html'],
-    ['tentang',   'Tentang',   'Tentang.html'],
-    ['testimoni', 'Testimoni', 'Testimoni.html'],
-    ['kontak',    'Kontak',    'Kontak.html']
+    ['beranda',   'Beranda',   '/'],
+    ['layanan',   'Layanan',   '/layanan'],
+    ['produk',    'Produk',    '/produk'],
+    ['tentang',   'Tentang',   '/tentang'],
+    ['testimoni', 'Testimoni', '/testimoni'],
+    ['kontak',    'Kontak',    '/kontak']
   ];
 
   function ig(size, color) {
@@ -36,7 +36,7 @@
   var active = document.body.getAttribute('data-page') || 'beranda';
 
   function logo(extraSub) {
-    return '<a class="logo" href="index.html" aria-label="Makmur Agung Automotive">' +
+    return '<a class="logo" href="/" aria-label="Makmur Agung Automotive">' +
       '<img class="logo__mark" src="assets/ma-logo.png" alt="Makmur Agung" width="96" height="35">' +
       '<span class="logo__text">' +
         '<span class="logo__name">Makmur Agung</span>' +
@@ -100,11 +100,11 @@
             PAGES.map(function (p) { return '<a href="' + p[2] + '">' + p[1] + '</a>'; }).join('') +
           '</div>' +
           '<div class="footer__col"><h4>Layanan</h4>' +
-            '<a href="Layanan.html">Retrofit Bi-LED</a>' +
-            '<a href="Layanan.html">Pasang HID / Xenon</a>' +
-            '<a href="Layanan.html">Angel Eye & DRL</a>' +
-            '<a href="Layanan.html">Restorasi Headlamp</a>' +
-            '<a href="Layanan.html">Konsultasi Beam</a>' +
+            '<a href="/layanan">Retrofit Bi-LED</a>' +
+            '<a href="/layanan">Pasang HID / Xenon</a>' +
+            '<a href="/layanan">Angel Eye & DRL</a>' +
+            '<a href="/layanan">Restorasi Headlamp</a>' +
+            '<a href="/layanan">Konsultasi Beam</a>' +
           '</div>' +
           '<div class="footer__col"><h4>Workshop</h4>' +
             '<p>' + ADDRESS + '</p>' +

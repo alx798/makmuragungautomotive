@@ -299,14 +299,14 @@
             '<span class="pcard__wa-ico" aria-hidden="true"><img src="https://cdn.simpleicons.org/whatsapp/06210f" width="14" height="14" alt=""></span>' +
             '<span class="pcard__wa-txt"><b>Tanya via WhatsApp</b><small>Cek stok &amp; estimasi pasang</small></span>' +
           '</a>' +
-          '<a class="pcard__cta" href="Produk.html" data-cursor="Detail" aria-label="Lihat ' + p.name + '"><i data-lucide="arrow-up-right"></i></a>' +
+          '<a class="pcard__cta" href="/produk" data-cursor="Detail" aria-label="Lihat ' + p.name + '"><i data-lucide="arrow-up-right"></i></a>' +
         '</div>' +
       '</article>';
     }).join('');
     html += '<article class="pcard pcard--all" role="listitem">' +
       '<h3 class="pcard__name">Lihat<br>Semua</h3>' +
       '<p class="pcard__type" style="min-height:0">29+ projector di katalog Aozoom</p>' +
-      '<a class="pcard__cta" href="Produk.html" data-cursor="Katalog" aria-label="Lihat semua produk"><i data-lucide="arrow-right"></i></a>' +
+      '<a class="pcard__cta" href="/produk" data-cursor="Katalog" aria-label="Lihat semua produk"><i data-lucide="arrow-right"></i></a>' +
     '</article>';
     track.innerHTML = html;
 

@@ -1,0 +1,35 @@
+# ============================================================
+# Makmur Agung Automotive — clean URLs (LiteSpeed / Apache mod_rewrite)
+# Serves /layanan, /produk, etc. from the real .html files and
+# 301-redirects the old *.html URLs to the clean versions.
+# ============================================================
+RewriteEngine On
+
+# --- 1) Redirect old .html URLs to clean, lowercase URLs (301) ---
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^ / [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+Layanan\.html[\s?] [NC]
+RewriteRule ^ /layanan [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+Produk\.html[\s?] [NC]
+RewriteRule ^ /produk [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+Tentang\.html[\s?] [NC]
+RewriteRule ^ /tentang [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+Testimoni\.html[\s?] [NC]
+RewriteRule ^ /testimoni [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+Kontak\.html[\s?] [NC]
+RewriteRule ^ /kontak [R=301,L]
+
+# --- 2) Strip trailing slash so relative asset paths resolve correctly ---
+RewriteRule ^(layanan|produk|tentang|testimoni|kontak)/$ /$1 [R=301,L]
+
+# --- 3) Serve clean URLs from the real (capitalized) files ---
+RewriteRule ^layanan$   Layanan.html   [L]
+RewriteRule ^produk$    Produk.html    [L]
+RewriteRule ^tentang$   Tentang.html   [L]
+RewriteRule ^testimoni$ Testimoni.html [L]
+RewriteRule ^kontak$    Kontak.html    [L]
