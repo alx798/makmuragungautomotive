@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id" class="is-loading">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makmur Agung Automotive · Retrofit Lampu Mobil Aozoom Malang</title>
+<meta name="description" content="Reseller resmi Aozoom & workshop retrofit lampu mobil di Malang. Bi-LED, HID/Xenon, laser, angel eye & DRL. Lebih terang, lebih jauh, lebih tajam, dipasang teknisi bersertifikat.">
+<meta name="theme-color" content="#0B0C0E">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Makmur Agung Automotive · Retrofit Lampu Mobil Aozoom Malang">
+<meta property="og:description" content="Cahaya yang diukir dengan presisi. Retrofit Bi-LED, laser & angel eye Aozoom resmi di Malang.">
+<meta property="og:image" content="assets/hero-car-4k.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="assets/hero-loop-poster.jpg" fetchpriority="high">
+<link rel="preload" as="video" href="assets/hero-loop.webm" type="video/webm">
+<link rel="stylesheet" href="assets/site.css?v=20260625">
+<link rel="stylesheet" href="assets/experience.css?v=20260625">
+<script defer src="https://unpkg.com/lucide@latest"></script>
+
+<!-- Lock scroll while the minimalist preloader runs; hard failsafe unlock -->
+<script>
+  (function () {
+    var d = document.documentElement;
+    var seen = false;
+    try { seen = sessionStorage.getItem('ma_intro') === '1'; } catch (e) {}
+    // Repeat visit this session: skip the intro curtain entirely (no flash, no scroll lock).
+    if (seen) { d.classList.remove('is-loading'); d.classList.add('intro-seen'); }
+    else { try { d.classList.add('is-loading'); } catch (e) {} }
+    window.__maUnlock = function () {
+      d.classList.remove('is-loading');
+      var pl = document.getElementById('preloader');
+      if (pl && pl.style.display !== 'none') { pl.style.display = 'none'; }
+    };
+    setTimeout(window.__maUnlock, 4200);
+  })();
+</script>
+</head>
+<body data-page="beranda">
+
+<!-- ============ MINIMAL PRELOADER (light curtain) ============ -->
+<div class="loader" id="preloader" aria-hidden="true">
+  <div class="loader__inner">
+    <div class="loader__mark">
+      <span class="loader__word" data-pl="line">Makmur</span>
+      <span class="loader__word loader__word--accent" data-pl="line">Agung</span>
+    </div>
+    <div class="loader__meta">
+      <span class="loader__cap">Aozoom · Malang</span>
+      <span class="loader__pct"><b id="plPct">0</b>%</span>
+    </div>
+    <div class="loader__bar"><span class="loader__fill" id="plFill"></span></div>
+  </div>
+</div>
+
+<!-- ============ GLOBAL FX (scroll progress) ============ -->
+<div class="scroll-beam" aria-hidden="true"></div>
+
+<!-- ============================================================
+     HERO — "GRAPHITE STUDIO"  (dark · full-bleed graded photo · headlight bloom)
+     ============================================================ -->
+<section class="hero" id="hero">
+  <!-- full-bleed studio photo, graded into graphite (floats toward cursor) -->
+  <div class="hero__media">
+    <video class="hero__photo" id="heroPhoto"
+           autoplay loop muted playsinline preload="auto"
+           poster="assets/hero-loop-poster.jpg"
+           aria-label="BMW dengan retrofit angel eye Aozoom di studio Makmur Agung, animasi loop">
+      <source src="assets/hero-loop.webm" type="video/webm">
+    </video>
+    <!-- warm bloom blooming from the headlights -->
+    <span class="hero__bloom" aria-hidden="true"></span>
+  </div>
+  <!-- legibility ramp + cinematic vignette + dissolve into the dark body -->
+  <div class="hero__scrim" aria-hidden="true"></div>
+
+  <div class="wrap hero__wrap">
+    <div class="hero__lead">
+      <div class="hero__kick" data-anim="kick">
+        <span class="hero__kick-dot"></span>
+        <span class="hero__kick-tag">Authorized Aozoom Partner · Malang</span>
+      </div>
+
+      <h1 class="hero__title">
+        <span class="line"><span data-split>Lebih <span class="ignite">Terang.</span></span></span>
+        <span class="line"><span data-split>Lebih Tajam.</span></span>
+      </h1>
+
+      <p class="hero__sub" data-anim="sub">
+        Retrofit Bi-LED, HID, laser &amp; angel eye Aozoom resmi, <em>cutoff</em> bersih,
+        terang maksimal tanpa menyilaukan lawan arah.
+      </p>
+
+      <div class="hero__btns" data-anim="btns">
+        <a class="btn btn--orange btn--lg fx-magnetic" href="Kontak.html" data-cursor="Booking">Booking Retrofit</a>
+      </div>
+
+    </div>
+  </div>
+
+  <a class="scroll-cue" href="#services" aria-label="Gulir ke bawah" data-cursor="Scroll">
+    <span class="scroll-cue__rail"></span>
+    <span>Gulir untuk menjelajah</span>
+  </a>
+</section>
+
+<!-- ============ CAPABILITY MARQUEE — handoff into the dark ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Bi-LED Projector</span><span>HID Xenon</span><span>Laser High-Beam</span><span>Angel Eye &amp; DRL</span><span>Restorasi Headlamp</span><span>Plug &amp; Play</span>
+    <span>Bi-LED Projector</span><span>HID Xenon</span><span>Laser High-Beam</span><span>Angel Eye &amp; DRL</span><span>Restorasi Headlamp</span><span>Plug &amp; Play</span>
+  </div>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Layanan Kami</span>
+        <h2 class="sec-head__h">Pasang Rapi.<br>Hasil Maksimal.</h2>
+      </div>
+      <a class="tlink" href="Layanan.html" data-cursor="Lihat">Lihat Semua Layanan <span class="ar"><i data-lucide="arrow-right"></i></span></a>
+    </div>
+
+    <div class="svc-grid">
+      <article class="svc" data-tilt>
+        <span class="svc__no">01</span>
+        <span class="svc__ico"><i data-lucide="lightbulb"></i></span>
+        <h3>Retrofit<br>Bi-LED</h3>
+        <p>Projector Bi-LED Aozoom dengan cutoff tajam. Terang penuh ke jalan, gelap ke arah lawan.</p>
+        <ul class="svc__list">
+          <li><i data-lucide="check"></i>A5+, A6, CLPD &amp; laser AAPD</li>
+          <li><i data-lucide="check"></i>Non-destructive tersedia</li>
+        </ul>
+        <span class="svc__glow" aria-hidden="true"></span>
+      </article>
+
+      <article class="svc" data-tilt>
+        <span class="svc__no">02</span>
+        <span class="svc__ico"><i data-lucide="zap"></i></span>
+        <h3>Pasang<br>HID / Xenon</h3>
+        <p>Bi-xenon projector kit dengan ballast rapid-start. Pilihan klasik retrofit yang terbukti.</p>
+        <ul class="svc__list">
+          <li><i data-lucide="check"></i>5500K–6000K cool white</li>
+          <li><i data-lucide="check"></i>Ballast digital stabil</li>
+        </ul>
+        <span class="svc__glow" aria-hidden="true"></span>
+      </article>
+
+      <article class="svc" data-tilt>
+        <span class="svc__no">03</span>
+        <span class="svc__ico"><i data-lucide="circle-dot"></i></span>
+        <h3>Angel Eye<br>&amp; DRL Custom</h3>
+        <p>Ring angel eye dan DRL custom untuk tampilan show-quality, terlihat siang dan malam.</p>
+        <ul class="svc__list">
+          <li><i data-lucide="check"></i>Shroud custom rapi</li>
+          <li><i data-lucide="check"></i>Warna sesuai permintaan</li>
+        </ul>
+        <span class="svc__glow" aria-hidden="true"></span>
+      </article>
+
+      <article class="svc" data-tilt>
+        <span class="svc__no">04</span>
+        <span class="svc__ico"><i data-lucide="sparkles"></i></span>
+        <h3>Restorasi<br>Headlamp</h3>
+        <p>Mika menguning dan buram dipoles bening kembali, lalu dilapis pelindung UV.</p>
+        <ul class="svc__list">
+          <li><i data-lucide="check"></i>Poles + coating UV</li>
+          <li><i data-lucide="check"></i>Anti-embun re-seal</li>
+        </ul>
+        <span class="svc__glow" aria-hidden="true"></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KEY BENEFITS — why choose us ============ -->
+<section class="section benefits" id="benefits" aria-label="Keunggulan kami">
+  <div class="wrap">
+    <div class="benefits__head reveal">
+      <span class="benefits__badge">Keunggulan Kami</span>
+      <h2 class="benefits__h">Kenapa <span class="accent">Makmur Agung</span> Pilihan<br>yang Tepat untuk Anda</h2>
+    </div>
+
+    <div class="bento">
+      <article class="bento__card reveal">
+        <span class="bento__ico"><i data-lucide="gem"></i></span>
+        <h3 class="bento__title">Kualitas Terbaik</h3>
+        <p class="bento__copy">Projector Aozoom Original dengan cutoff tajam dan output cahaya yang stabil.</p>
+      </article>
+
+      <article class="bento__card reveal">
+        <span class="bento__ico"><i data-lucide="wrench"></i></span>
+        <h3 class="bento__title">Montir Terlatih</h3>
+        <p class="bento__copy">Dikerjakan teknisi dengan pengukuran presisi, dan rapi</p>
+      </article>
+
+      <article class="bento__card bento__card--feature reveal">
+        <span class="bento__ico"><i data-lucide="shield-check"></i></span>
+        <h3 class="bento__title">Bergaransi Resmi</h3>
+        <p class="bento__copy">Setiap pemasangan dan produk Aozoom kami berikan garansi resmi. Kalau ada kendala, tim kami yang menangani, bukan Anda yang repot.</p>
+        <p class="bento__copy">Konsultasikan dulu kebutuhan retrofit mobil Anda tanpa biaya. Kami bantu pilih projector yang paling pas untuk mobil dan budget Anda.</p>
+        <a class="btn btn--orange bento__cta" href="Kontak.html" data-cursor="Booking">Konsultasi Gratis <i data-lucide="arrow-right"></i></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HALOGEN vs BI-LED — interactive comparison ============ -->
+<section class="section section--flush" id="compare-sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Halogen vs Bi-LED</span>
+        <h2 class="sec-head__h">Geser. Rasakan Bedanya.</h2>
+      </div>
+      <p class="sec-head__lead reveal">Projector Aozoom membentuk garis cutoff bersih, terang penuh ke jalan Anda, gelap ke arah lawan. Bukan sekadar bohlam putih yang menyebar dan menyilaukan.</p>
+    </div>
+  </div>
+
+  <div class="compare-stage">
+    <div class="compare" id="beamCompare" data-cursor="Geser">
+      <div class="compare__img compare__img--halogen"><img src="assets/compare-daihatsu.jpg" alt="Daihatsu dengan lampu halogen standar, redup dan menyebar" loading="lazy"></div>
+      <div class="compare__img compare__img--led"><img src="assets/compare-daihatsu.jpg" alt="Daihatsu dengan retrofit Bi-LED &amp; angel eye Aozoom, terang dan cutoff tajam" loading="lazy"></div>
+      <span class="compare__line"></span>
+      <button class="compare__handle" type="button" aria-label="Geser membandingkan halogen dan Bi-LED"><i data-lucide="chevrons-left-right"></i></button>
+      <span class="compare__tag compare__tag--l">Halogen</span>
+      <span class="compare__tag compare__tag--r">Bi-LED Aozoom</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCT RAIL — pinned horizontal scroll (Aozoom catalog) ============ -->
+<section class="rail" id="rail" aria-label="Lini produk Aozoom">
+  <div class="rail__pin" id="railPin">
+    <div class="rail__head">
+      <span class="eyebrow">Lini Aozoom</span>
+      <h2 class="rail__h">Projector Pilihan.</h2>
+      <p class="rail__note">Dari LED harian sampai laser flagship. <span>Geser →</span></p>
+    </div>
+    <div class="rail__track" id="railTrack" role="list">
+      <!-- product cards injected by experience.js -->
+    </div>
+    <div class="rail__progress" aria-hidden="true"><span id="railBar"></span></div>
+  </div>
+</section>
+
+<!-- ============ PROCESS — beam-line timeline ============ -->
+<section class="section process" id="process">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">Alur Pengerjaan</span>
+        <h2 class="sec-head__h">Dari Konsultasi<br>ke Cahaya.</h2>
+      </div>
+      <a class="tlink" href="Kontak.html" data-cursor="Booking">Booking Slot <span class="ar"><i data-lucide="arrow-right"></i></span></a>
+    </div>
+
+    <div class="steps" id="steps">
+      <span class="steps__rail" aria-hidden="true"><span class="steps__rail-fill" id="stepsFill"></span></span>
+      <article class="step reveal">
+        <span class="step__no">01</span>
+        <div class="step__body">
+          <h4>Konsultasi Beam</h4>
+          <p>Diskusi kebutuhan, mobil, dan ekspektasi via WhatsApp atau langsung di workshop. Gratis.</p>
+        </div>
+      </article>
+      <article class="step reveal">
+        <span class="step__no">02</span>
+        <div class="step__body">
+          <h4>Pengukuran &amp; Bongkar</h4>
+          <p>Headlamp dibuka rapi, dudukan diukur agar projector duduk presisi tanpa merusak.</p>
+        </div>
+      </article>
+      <article class="step reveal">
+        <span class="step__no">03</span>
+        <div class="step__body">
+          <h4>Retrofit &amp; Pasang</h4>
+          <p>Projector Aozoom dipasang, wiring dirapikan, shroud &amp; angel eye disesuaikan permintaan.</p>
+        </div>
+      </article>
+      <article class="step reveal">
+        <span class="step__no">04</span>
+        <div class="step__body">
+          <h4>Uji Beam &amp; Garansi</h4>
+          <p>Cutoff diuji di dinding &amp; jalan, mobil keluar dengan garansi resmi 2 tahun.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="section section--tight gallery-sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Galeri Pemasangan</span><h2 class="sec-head__h">Hasil Nyata di Workshop</h2></div>
+      <a class="tlink" id="gallery-ig" href="#" data-cursor="Instagram">Lihat di Instagram <span class="ar"><i data-lucide="arrow-up-right"></i></span></a>
+    </div>
+    <div class="gallery reveal">
+      <figure class="g g--wide g--tall" data-cursor="Lihat"><img src="assets/install-fortuner-rgb.jpg" alt="Toyota Fortuner dengan DRL sequential RGB Aozoom di Makmur Agung Malang" loading="lazy"><figcaption>Fortuner · DRL Sequential</figcaption></figure>
+      <figure class="g" data-cursor="Lihat"><img src="assets/install-honda.jpg" alt="Honda hitam dengan projector bi-LED dan angel eye biru Aozoom" loading="lazy"><figcaption>Honda · Angel Eye</figcaption></figure>
+      <figure class="g" data-cursor="Lihat"><img src="assets/install-wuling.jpg" alt="Wuling EV putih dengan angel eye biru Aozoom di showroom Malang" loading="lazy"><figcaption>Wuling EV · DRL</figcaption></figure>
+      <figure class="g g--wide" data-cursor="Lihat"><img src="assets/install-rocky.jpg" alt="Retrofit Bi-LED Daihatsu Rocky" loading="lazy" style="object-position: center 64%;"><figcaption>Rocky · Bi-LED Retrofit</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section testi-sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Kata Pelanggan</span><h2 class="sec-head__h">Dipercaya Pemilik Mobil</h2></div>
+      <a class="tlink" href="Testimoni.html" data-cursor="Lihat">Semua Testimoni <span class="ar"><i data-lucide="arrow-right"></i></span></a>
+    </div>
+    <div class="tst-grid">
+      <figure class="quote reveal">
+        <div class="quote__stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+        <blockquote class="quote__body">Saya sangat puas dengan pelayanan Aozoom. Hasil modifikasi lampu mobilnya rapi, terang, dan kualitasnya benar-benar premium. Teknisi profesional, ramah, dan detail dalam pengerjaan.</blockquote>
+        <figcaption class="quote__who"><span class="quote__av">KJ</span><div><div class="quote__name">Kenny Jonathan</div><div class="quote__meta">Ulasan Google · 3 bulan lalu</div></div></figcaption>
+      </figure>
+      <figure class="quote reveal">
+        <div class="quote__stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+        <blockquote class="quote__body">Owner nya detail dan ramah dalam menjelaskan pekerjaan. Teknisi terlihat mahir dan pekerjaan rapi dan detail, harga tentunya bersahabat, top deh.</blockquote>
+        <figcaption class="quote__who"><span class="quote__av">HN</span><div><div class="quote__name">Hermawan Nugraha</div><div class="quote__meta">Local Guide · 37 ulasan</div></div></figcaption>
+      </figure>
+      <figure class="quote reveal">
+        <div class="quote__stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+        <blockquote class="quote__body">Pelayanan prima, loyalitas tanpa batas. Jangan salah pilih untuk pencahayaan, percayakan pada Aozoom. Garansi panjang ketimbang tetangga sebelah.</blockquote>
+        <figcaption class="quote__who"><span class="quote__av">DW</span><div><div class="quote__name">D' Wardhana</div><div class="quote__meta">Ulasan Google · 11 ulasan</div></div></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="cta" id="cta">
+  <div class="cta__bg"><img data-parallax="10" src="assets/install-rocky.jpg" alt=""></div>
+  <div class="cta__glow" aria-hidden="true"></div>
+  <div class="cta__inner"><div class="wrap reveal">
+    <span class="eyebrow eyebrow--plain eyebrow--center">Siap Upgrade?</span>
+    <h2 class="cta__h">Nyalakan Malam Anda.</h2>
+    <p>Booking slot retrofit di workshop kami. Konsultasi beam gratis sebelum pasang, tinggal chat WhatsApp.</p>
+    <div class="cta__btns">
+      <a class="btn btn--orange btn--lg fx-magnetic" href="Kontak.html" data-cursor="Booking">Booking Retrofit</a>
+      <a class="btn btn--lg fx-magnetic" id="cta-wa" href="#" data-cursor="Chat">Order via WhatsApp</a>
+    </div>
+  </div></div>
+</section>
+
+<!-- ============ SCRIPTS ============ -->
+<script src="assets/site.js?v=20260625"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="assets/experience.js?v=20260625"></script>
+
+<script>
+  // Hero loop: hold on the poster frame for reduced-motion users,
+  // otherwise nudge playback for browsers that don't honor autoplay immediately
+  (function () {
+    var v = document.getElementById('heroPhoto');
+    if (!v || v.tagName !== 'VIDEO') return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      try { v.removeAttribute('autoplay'); v.pause(); } catch (e) {}
+      return;
+    }
+    var kick = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+    if (v.readyState >= 2) kick(); else v.addEventListener('loadeddata', kick, { once: true });
+  })();
+
+  // Wire WhatsApp + Instagram links from the shared site config (window.MA)
+  (function () {
+    var wa = (window.MA && window.MA.WA_LINK) || '#';
+    ['hero-wa', 'cta-wa'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.setAttribute('href', wa); el.setAttribute('target', '_blank'); el.setAttribute('rel', 'noopener');
+    });
+    var gig = document.getElementById('gallery-ig');
+    if (gig && window.MA) { gig.setAttribute('href', window.MA.IG_LINK); gig.setAttribute('target', '_blank'); gig.setAttribute('rel', 'noopener'); }
+  })();
+</script>
+</body>
+</html>

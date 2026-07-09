@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testimoni · Makmur Agung Automotive · Aozoom Malang</title>
+<meta name="description" content="Apa kata pelanggan Makmur Agung Automotive. Ulasan retrofit Bi-LED, HID, dan angel eye dari pemilik mobil di Malang dan sekitarnya.">
+<link rel="stylesheet" href="assets/site.css">
+<script defer src="https://unpkg.com/lucide@latest"></script>
+<style>
+.rating-band { display: grid; grid-template-columns: auto 1fr; gap: 56px; align-items: center; }
+.rating-big { text-align: center; }
+.rating-big .num { font-family: var(--font-display); font-weight: 700; font-size: 96px; line-height: .9; color: var(--on-dark); }
+.rating-big .stars { display: flex; gap: 4px; justify-content: center; color: var(--aozoom-amber); margin: 10px 0 8px; }
+.rating-big .stars svg { width: 22px; height: 22px; fill: currentColor; }
+.rating-big .cap { font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); }
+.rating-bars { display: flex; flex-direction: column; gap: 12px; }
+.rbar { display: flex; align-items: center; gap: 14px; }
+.rbar__k { font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--body); width: 44px; display: flex; align-items: center; gap: 5px; }
+.rbar__k svg { width: 13px; height: 13px; fill: var(--aozoom-amber); color: var(--aozoom-amber); }
+.rbar__track { flex: 1; height: 8px; background: var(--surface-card); border: 1px solid var(--hairline); overflow: hidden; }
+.rbar__fill { height: 100%; background: var(--beam-gradient); }
+.rbar__v { font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--muted); width: 42px; text-align: right; }
+
+.tcols { columns: 3; column-gap: 20px; }
+.tcols .quote { margin: 0 0 20px; }
+.feature-quote { border: 1px solid var(--aozoom-orange); padding: 56px 56px; position: relative; background: var(--surface-card); }
+.feature-quote__mark { font-family: var(--font-display); font-weight: 700; font-size: 120px; line-height: .6; color: var(--surface-carbon); -webkit-text-stroke: 1px var(--hairline-strong); position: absolute; top: 30px; left: 40px; }
+.feature-quote__body { position: relative; font-size: clamp(22px,2.6vw,32px); line-height: 1.4; color: var(--on-dark); font-weight: 300; max-width: 26ch; }
+.feature-quote__stars { display: flex; gap: 4px; color: var(--aozoom-amber); margin-bottom: 24px; }
+.feature-quote__stars svg { width: 20px; height: 20px; fill: currentColor; }
+.feature-quote__who { display: flex; align-items: center; gap: 14px; margin-top: 30px; }
+.feature-quote__av { width: 50px; height: 50px; border-radius: var(--radius-full); background: var(--surface-carbon); display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 19px; color: var(--aozoom-amber); }
+.feature-quote__name { font-family: var(--font-display); font-weight: 600; font-size: 17px; letter-spacing: .5px; text-transform: uppercase; color: var(--on-dark); }
+.feature-quote__meta { font-size: 13px; color: var(--muted); margin-top: 3px; }
+.ig-cta { display: flex; align-items: center; justify-content: space-between; gap: 24px; background: var(--surface-soft); border: 1px solid var(--hairline); padding: 36px 40px; flex-wrap: wrap; }
+.ig-cta__l { display: flex; align-items: center; gap: 20px; }
+.ig-cta__ico { width: 56px; height: 56px; border: 1px solid var(--hairline-strong); display: inline-flex; align-items: center; justify-content: center; }
+.ig-cta__ico img { width: 26px; height: 26px; }
+.ig-cta h3 { font-family: var(--font-display); font-weight: 700; font-size: 24px; text-transform: uppercase; color: var(--on-dark); margin: 0 0 4px; }
+.ig-cta p { font-size: 14px; color: var(--muted); margin: 0; }
+@media (max-width: 980px) {
+  .rating-band { grid-template-columns: 1fr; gap: 36px; text-align: center; }
+  .tcols { columns: 2; }
+  .feature-quote { padding: 40px 32px; }
+}
+@media (max-width: 640px) { .tcols { columns: 1; } }
+</style>
+</head>
+<body data-page="testimoni">
+
+<div id="ma-nav"></div>
+
+<!-- ============ PAGE HEAD ============ -->
+<header class="pagehead" data-screen-label="Testimoni — header">
+  <div class="pagehead__bg"><img src="assets/install-fortuner.jpg" alt="Pelanggan Makmur Agung"></div>
+  <div class="pagehead__inner"><div class="wrap">
+    <span class="crumb"><a href="index.html">Beranda</a> &nbsp;/&nbsp; Testimoni</span>
+    <h1>Kata Pelanggan Kami</h1>
+    <p class="lead">Penilaian asli pelanggan kami di Google, Aozoom Malang. Rating sempurna 5,0 dari pemilik mobil yang sudah retrofit Bi-LED, foglamp, sampai angel eye custom.</p>
+    <div class="beam beam-sweep" style="width:120px;margin-top:28px"></div>
+  </div></div>
+</header>
+
+<!-- ============ FEATURE QUOTE ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="feature-quote reveal">
+      <span class="feature-quote__mark">&ldquo;</span>
+      <div class="feature-quote__stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+      <p class="feature-quote__body">Saya sangat puas dengan pelayanan Aozoom. Hasil modifikasi lampu mobilnya rapi, terang, dan kualitasnya benar-benar premium. Teknisi profesional, ramah, dan detail dalam pengerjaan. Sangat direkomendasikan untuk yang ingin upgrade lampu mobil agar lebih maksimal dan stylish.</p>
+      <div class="feature-quote__who">
+        <span class="feature-quote__av">KJ</span>
+        <div><div class="feature-quote__name">Kenny Jonathan</div><div class="feature-quote__meta">Ulasan Google · 4 ulasan · 3 bulan lalu</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MASONRY QUOTES ============ -->
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="tcols reveal">
+
+      <div class="quote">
+        <div class="quote__stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+        <div class="quote__body">Owner nya detail dan ramah dalam menjelaskan pekerjaan. Teknisi terlihat mahir dan pekerjaan rapi dan detail, harga tentunya bersahabat, top deh.</div>
+        <div class="quote__who"><span class="quote__av">HN</span><div><div class="quote__name">Hermawan Nugraha</div><div class="quote__meta">Local Guide · 37 ulasan · 2 bulan lalu</div></div><span class="quote__src" id="src1"></span></div>
+      </div>
+
+      <div class="quote">
+        <div class="quote__stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+        <div class="quote__body">Pelayanan prima, loyalitas tanpa batas. Jangan salah pilih untuk pencahayaan, percayakan pada Aozoom. Garansi panjang ketimbang tetangga sebelah.</div>
+        <div class="quote__who"><span class="quote__av">DW</span><div><div class="quote__name">D' Wardhana</div><div class="quote__meta">11 ulasan · 5 foto · 3 bulan lalu</div></div><span class="quote__src" id="src2"></span></div>
+      </div>
+
+      <div class="quote">
+        <div class="quote__stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+        <div class="quote__body">Setelah pasang Aozoom Wasp foglamp di Expander, hasilnya memuaskan dan pelayanan mantab. Beberapa kali setting ketinggian lampu foglamp dilayani dengan baik dan ramah.</div>
+        <div class="quote__who"><span class="quote__av">AR</span><div><div class="quote__name">Aditya Rahadiyansyah</div><div class="quote__meta">13 ulasan · 1 foto · 3 bulan lalu</div></div><span class="quote__src" id="src3"></span></div>
+      </div>
+
+      <div class="quote">
+        <div class="quote__stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+        <div class="quote__body">First dealer resmi Aozoom Malang. Rapi, tuerang banget, daripada merk sebelah. Kalau rusak langsung ganti baru. Jos jis tenan pokoknya, sukses terus.</div>
+        <div class="quote__who"><span class="quote__av">RD</span><div><div class="quote__name">Rafael Dismas</div><div class="quote__meta">14 ulasan · 3 foto · 11 bulan lalu</div></div><span class="quote__src" id="src4"></span></div>
+      </div>
+
+      <div class="quote">
+        <div class="quote__stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+        <div class="quote__body">Bengkel lampu yang pengerjaannya rapi, memuaskan, dan cahayanya tidak kaleng-kaleng.</div>
+        <div class="quote__who"><span class="quote__av">RS</span><div><div class="quote__name">Rizal Syah Icha</div><div class="quote__meta">2 ulasan · 11 bulan lalu</div></div><span class="quote__src" id="src5"></span></div>
+      </div>
+
+      <div class="quote">
+        <div class="quote__stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+        <div class="quote__body">Baik, ramah pelayanannya, keren ini. Mungkin kedepannya tempatnya diperluas biar lega, dan boleh nambah mekanik agar pengerjaan bisa lebih maksimal.</div>
+        <div class="quote__who"><span class="quote__av">CH</span><div><div class="quote__name">Chrisdnlisn</div><div class="quote__meta">5 ulasan · 8 foto · 7 bulan lalu</div></div><span class="quote__src" id="src6"></span></div>
+      </div>
+
+      <div class="quote">
+        <div class="quote__stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+        <div class="quote__body">Pemasangan rapi dan cepat.</div>
+        <div class="quote__who"><span class="quote__av">RB</span><div><div class="quote__name">Reynardo Bryan</div><div class="quote__meta">5 ulasan · 3 bulan lalu</div></div><span class="quote__src" id="src7"></span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ IG CTA ============ -->
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="ig-cta reveal">
+      <div class="ig-cta__l">
+        <span class="ig-cta__ico" id="ig-ico"></span>
+        <div>
+          <h3>Lihat Hasil Lainnya di Instagram</h3>
+          <p id="ig-handle-text">Galeri pemasangan harian: beam, before/after, dan build custom.</p>
+        </div>
+      </div>
+      <a class="btn btn--orange" id="ig-btn" href="#" target="_blank" rel="noopener">Ikuti Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta">
+  <div class="cta__bg"><img src="assets/install-rocky.jpg" alt=""></div>
+  <div class="cta__inner"><div class="wrap reveal">
+    <h2 style="margin:0 auto">Mau Jadi yang Berikutnya?</h2>
+    <p>Rating 5,0 di Google dari pelanggan Aozoom Malang. Booking slot retrofit Anda dan rasakan bedanya sendiri.</p>
+    <div class="cta__btns">
+      <a class="btn btn--orange btn--lg" href="Kontak.html">Booking Retrofit</a>
+      <a class="btn btn--lg" id="cta-wa" href="#">Konsultasi WhatsApp</a>
+    </div>
+  </div></div>
+</section>
+
+<div id="ma-footer"></div>
+<script src="assets/site.js"></script>
+<script>
+  (function () {
+    var M = window.MA || {};
+    var wa = M.WA_LINK || '#';
+    document.getElementById('cta-wa').setAttribute('href', wa);
+    document.getElementById('cta-wa').setAttribute('target','_blank');
+    // IG block
+    var igImg = '<img src="https://cdn.simpleicons.org/instagram/FF5A1F" width="26" height="26" alt="Instagram">';
+    document.getElementById('ig-ico').innerHTML = igImg;
+    var btn = document.getElementById('ig-btn');
+    if (M.IG_LINK) { btn.setAttribute('href', M.IG_LINK); }
+    document.getElementById('ig-handle-text').textContent = '@' + (M.IG_HANDLE || 'aozoom.malang') + ': beam, before/after, dan build custom.';
+    // google-review source mark on every card (these are real Google reviews)
+    var gmark = '<img src="https://cdn.simpleicons.org/google/7A8088" width="18" height="18" alt="Google review">';
+    ['src1','src2','src3','src4','src5','src6','src7'].forEach(function(id){ var e=document.getElementById(id); if(e) e.innerHTML=gmark; });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layanan — Makmur Agung Autoshop · Aozoom Malang</title>
+<meta name="description" content="Layanan retrofit lampu mobil: Bi-LED, HID/Xenon, Angel Eye & DRL custom, restorasi headlamp, dan konsultasi beam. Workshop Aozoom resmi di Malang.">
+<link rel="stylesheet" href="assets/site.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+.svc-list { display: grid; grid-template-columns: 1fr; gap: 0; }
+.svc-row { display: grid; grid-template-columns: 88px 1.1fr 1fr; gap: 40px; align-items: center; padding: 56px 0; border-top: 1px solid var(--hairline); }
+.svc-row:last-child { border-bottom: 1px solid var(--hairline); }
+.svc-row__no { font-family: var(--font-display); font-weight: 700; font-size: 64px; line-height: 1; color: var(--surface-carbon); -webkit-text-stroke: 1px var(--hairline-strong); }
+.svc-row__main h3 { font-family: var(--font-display); font-weight: 700; font-size: clamp(28px,3vw,40px); text-transform: uppercase; color: var(--on-dark); line-height: 1; margin: 0 0 8px; }
+.svc-row__ico { display: inline-flex; color: var(--aozoom-orange); margin-bottom: 16px; }
+.svc-row__ico svg { width: 30px; height: 30px; }
+.svc-row__main p { font-size: 16px; line-height: 1.65; max-width: 42ch; }
+.svc-row__specs { display: flex; flex-direction: column; gap: 12px; }
+.spec-line { display: flex; gap: 12px; align-items: flex-start; }
+.spec-line svg { width: 17px; height: 17px; color: var(--success); flex: 0 0 auto; margin-top: 3px; }
+.spec-line span { font-size: 15px; color: var(--body); }
+.svc-row__cta { margin-top: 22px; }
+
+.process { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+.pkg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.pkg { background: var(--surface-card); border: 1px solid var(--hairline); padding: 34px 30px; display: flex; flex-direction: column; gap: 8px; }
+.pkg--feature { border-color: var(--aozoom-orange); position: relative; }
+.pkg__flag { position: absolute; top: 0; right: 0; background: var(--aozoom-orange); color: #160500; font-family: var(--font-display); font-weight: 700; font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; padding: 6px 12px; }
+.pkg__name { font-family: var(--font-display); font-weight: 700; font-size: 24px; text-transform: uppercase; color: var(--on-dark); }
+.pkg__tier { font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--aozoom-orange); }
+.pkg__price { font-family: var(--font-display); font-weight: 700; font-size: 34px; color: var(--on-dark); margin: 14px 0 4px; }
+.pkg__price small { font-family: var(--font-body); font-weight: 300; font-size: 14px; color: var(--muted); display: block; margin-top: 4px; }
+.pkg__list { list-style: none; padding: 0; margin: 18px 0 26px; display: flex; flex-direction: column; gap: 11px; flex: 1; }
+.pkg__list li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--body); }
+.pkg__list li svg { width: 16px; height: 16px; color: var(--success); flex: 0 0 auto; margin-top: 3px; }
+.beam-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.beam-card { border: 1px solid var(--hairline); overflow: hidden; }
+.beam-card__top { position: relative; height: 230px; overflow: hidden; }
+.beam-card__top img { width: 100%; height: 100%; object-fit: cover; }
+.beam-card--bad .beam-card__top { background: var(--surface-soft); display: flex; align-items: center; justify-content: center; }
+.beam-card__glow-bad { width: 80%; height: 60%; background: radial-gradient(ellipse at center, rgba(200,200,210,.28), transparent 70%); filter: blur(8px); }
+.beam-card__body { padding: 24px; }
+.beam-card__body h4 { font-family: var(--font-display); font-weight: 700; font-size: 20px; text-transform: uppercase; margin: 0 0 8px; }
+.beam-card--bad h4 { color: var(--muted); }
+.beam-card--good h4 { color: var(--on-dark); }
+.beam-card__body p { font-size: 14px; line-height: 1.6; margin: 0; }
+.beam-tag { font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; padding: 4px 0; }
+.beam-card--bad .beam-tag { color: var(--danger); }
+.beam-card--good .beam-tag { color: var(--success); }
+@media (max-width: 980px) {
+  .svc-row { grid-template-columns: 60px 1fr; gap: 22px; }
+  .svc-row__specs { grid-column: 1 / -1; padding-left: 82px; }
+  .svc-row__no { font-size: 44px; }
+  .process { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .pkg-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .svc-row { grid-template-columns: 1fr; }
+  .svc-row__specs { padding-left: 0; }
+  .process { grid-template-columns: 1fr; }
+  .beam-compare { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body data-page="layanan">
+
+<div id="ma-nav"></div>
+
+<!-- ============ PAGE HEAD ============ -->
+<header class="pagehead" data-screen-label="Layanan — header">
+  <div class="pagehead__bg"><img src="assets/install-fortuner.jpg" alt="Workshop retrofit Makmur Agung"></div>
+  <div class="pagehead__inner"><div class="wrap">
+    <span class="crumb"><a href="index.html">Beranda</a> &nbsp;/&nbsp; Layanan</span>
+    <h1>Layanan Retrofit Lampu Mobil</h1>
+    <p class="lead">Dari Bi-LED resmi sampai angel eye custom — semua dikerjakan teknisi bersertifikat dengan part Aozoom asli. Diukur, dipasang rapi, diuji beam-nya sebelum mobil Anda keluar.</p>
+    <div class="beam beam-sweep" style="width:120px;margin-top:28px"></div>
+  </div></div>
+</header>
+
+<!-- ============ TRUST STRIP ============ -->
+<section class="trust">
+  <div class="wrap"><div class="trust__row">
+    <div class="trust__item"><i data-lucide="shield-check"></i><span>Garansi resmi 2 tahun</span></div>
+    <div class="trust__item"><i data-lucide="badge-check"></i><span>Part Aozoom asli</span></div>
+    <div class="trust__item"><i data-lucide="wrench"></i><span>Teknisi bersertifikat</span></div>
+    <div class="trust__item"><i data-lucide="messages-square"></i><span>Konsultasi gratis</span></div>
+  </div></div>
+</section>
+
+<!-- ============ SERVICE LIST ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="svc-list">
+
+      <article class="svc-row reveal">
+        <div class="svc-row__no">01</div>
+        <div class="svc-row__main">
+          <span class="svc-row__ico"><i data-lucide="lightbulb"></i></span>
+          <h3>Retrofit Bi-LED</h3>
+          <p>Upgrade utama kami. Projector Bi-LED Aozoom (A5+, A6, CLPD, laser AAPD) dipasang ke housing standar dengan cutoff tajam — low &amp; high beam dalam satu lensa.</p>
+          <div class="svc-row__cta"><a class="tlink" href="Kontak.html">Booking Retrofit <span class="ar"><i data-lucide="arrow-right"></i></span></a></div>
+        </div>
+        <div class="svc-row__specs">
+          <div class="spec-line"><i data-lucide="check"></i><span>Lensa 3.0″ Bi-LED, sampai 7200 lumens</span></div>
+          <div class="spec-line"><i data-lucide="check"></i><span>5500K cool white, cutoff presisi</span></div>
+          <div class="spec-line"><i data-lucide="check"></i><span>Opsi non-destructive / Plug &amp; Play</span></div>
+          <div class="spec-line"><i data-lucide="check"></i><span>Sealing ulang anti-embun</span></div>
+        </div>
+      </article>
+
+      <article class="svc-row reveal">
+        <div class="svc-row__no">02</div>
+        <div class="svc-row__main">
+          <span class="svc-row__ico"><i data-lucide="zap"></i></span>
+          <h3>Pasang HID / Xenon</h3>
+          <p>Bi-xenon projector kit dengan ballast digital rapid-start. Pilihan klasik retrofit yang terbukti terang dan stabil, dengan warna cahaya yang konsisten.</p>
+          <div class="svc-row__cta"><a class="tlink" href="Kontak.html">Booking Pemasangan <span class="ar"><i data-lucide="arrow-right"></i></span></a></div>
+        </div>
+        <div class="svc-row__specs">
+          <div class="spec-line"><i data-lucide="check"></i><span>Bi-xenon projector + ballast digital</span></div>
+          <div class="spec-line"><i data-lucide="check"></i><span>5500K–6000K cool white</span></div>
+          <div class="spec-line"><i data-lucide="check"></i><span>Rapid-start, anti flicker</span></div>
+          <div class="spec-line"><i data-lucide="check"></i><span>Wiring rapi + relay pengaman</span></div>
+        </div>
+      </article>
+
+      <article class="svc-row reveal">
+        <div class="svc-row__no">03</div>
+        <div class="svc-row__main">
+          <span class="svc-row__ico"><i data-lucide="circle-dot"></i></span>
+          <h3>Angel Eye &amp; DRL Custom</h3>
+          <p>Ring angel eye dan daytime running light custom untuk tampilan show-quality. Mobil Anda dikenali siang dan malam, dengan shroud yang dikerjakan rapi.</p>
+          <div class="svc-row__cta"><a class="tlink" href="Kontak.html">Konsultasi Desain <span class="ar"><i data-lucide="arrow-right"></i></span></a></div>
+        </div>
+        <div class="svc-row__specs">
+          <div class="spec-line"><i data-lucide="check"></i><span>Ring angel eye RGB / single-color</span></div>
+          <div class="spec-line"><i data-lucide="check"></i><span>DRL sequential / running</span></div>
+          <div class="spec-line"><i data-lucide="check"></i><span>Shroud &amp; finishing custom</span></div>
+          <div class="spec-line"><i data-lucide="check"></i><span>Warna sesuai permintaan</span></div>
+        </div>
+      </article>
+
+      <article class="svc-row reveal">
+        <div class="svc-row__no">04</div>
+        <div class="svc-row__main">
+          <span class="svc-row__ico"><i data-lucide="sparkles"></i></span>
+          <h3>Restorasi Headlamp</h3>
+          <p>Mika headlamp kusam, kuning, atau buram dipoles dan di-coating ulang sampai bening. Cahaya keluar maksimal, tampilan kembali seperti baru.</p>
+          <div class="svc-row__cta"><a class="tlink" href="Kontak.html">Booking Restorasi <span class="ar"><i data-lucide="arrow-right"></i></span></a></div>
+        </div>
+        <div class="svc-row__specs">
+          <div class="spec-line"><i data-lucide="check"></i><span>Wet-sanding bertahap + poles</span></div>
+          <div class="spec-line"><i data-lucide="check"></i><span>UV coating pelindung</span></div>
+          <div class="spec-line"><i data-lucide="check"></i><span>Anti kuning &amp; buram kembali</span></div>
+          <div class="spec-line"><i data-lucide="check"></i><span>Hasil bening tahan lama</span></div>
+        </div>
+      </article>
+
+      <article class="svc-row reveal">
+        <div class="svc-row__no">05</div>
+        <div class="svc-row__main">
+          <span class="svc-row__ico"><i data-lucide="messages-square"></i></span>
+          <h3>Konsultasi Beam</h3>
+          <p>Belum yakin paket mana yang cocok? Konsultasi gratis lewat WhatsApp. Kami bantu pilih sesuai mobil, kebutuhan, dan budget — dengan rekomendasi beam pattern yang tepat.</p>
+          <div class="svc-row__cta"><a class="tlink" id="svc-wa" href="#" target="_blank" rel="noopener">Mulai Konsultasi <span class="ar"><i data-lucide="arrow-up-right"></i></span></a></div>
+        </div>
+        <div class="svc-row__specs">
+          <div class="spec-line"><i data-lucide="check"></i><span>Rekomendasi sesuai tipe mobil</span></div>
+          <div class="spec-line"><i data-lucide="check"></i><span>Penjelasan beam pattern &amp; cutoff</span></div>
+          <div class="spec-line"><i data-lucide="check"></i><span>Estimasi biaya transparan</span></div>
+          <div class="spec-line"><i data-lucide="check"></i><span>Gratis, tanpa kewajiban</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ BEAM COMPARE ============ -->
+<section class="section" style="background:var(--surface-soft);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Kenapa Retrofit Projector</span><h2 style="margin-top:16px">Cutoff Tajam,<br>Bukan Silau.</h2></div>
+      <p class="lead" style="max-width:42ch">Bohlam LED biasa menyebar dan menyilaukan. Projector Aozoom membentuk garis cutoff bersih — terang penuh ke jalan, gelap ke lawan arah.</p>
+    </div>
+    <div class="beam-compare reveal">
+      <div class="beam-card beam-card--bad">
+        <div class="beam-card__top"><div class="beam-card__glow-bad"></div></div>
+        <div class="beam-card__body">
+          <span class="beam-tag">Bohlam LED Asal</span>
+          <h4>Menyebar &amp; Silau</h4>
+          <p>Cahaya pecah ke segala arah tanpa fokus. Terang di mata lawan arah, tapi jalan justru kurang jelas. Berbahaya dan tidak lolos uji.</p>
+        </div>
+      </div>
+      <div class="beam-card beam-card--good">
+        <div class="beam-card__top"><img src="assets/install-rocky.jpg" alt="Beam pattern Bi-LED Aozoom dengan cutoff tajam"></div>
+        <div class="beam-card__body">
+          <span class="beam-tag">Retrofit Projector Aozoom</span>
+          <h4>Fokus &amp; Tajam</h4>
+          <p>Garis cutoff presisi. Cahaya terkonsentrasi ke jalan dengan jangkauan jauh, tanpa menyilaukan pengendara lain. Aman dan E-MARK.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Alur Pengerjaan</span><h2 style="margin-top:16px">Empat Langkah, Rapi.</h2></div>
+    </div>
+    <div class="process">
+      <div class="step reveal"><div class="step__no is-on">01</div><div><h4>Konsultasi</h4><p>Chat WhatsApp, kirim tipe mobil. Kami rekomendasikan paket &amp; beam yang pas.</p></div></div>
+      <div class="step reveal"><div class="step__no is-on">02</div><div><h4>Booking</h4><p>Pilih slot di workshop Malang. Datang sesuai jadwal, tanpa antre lama.</p></div></div>
+      <div class="step reveal"><div class="step__no is-on">03</div><div><h4>Pengerjaan</h4><p>Teknisi pasang &amp; setting beam. Dikerjakan rapi dengan sealing ulang.</p></div></div>
+      <div class="step reveal"><div class="step__no is-on">04</div><div><h4>Uji &amp; Garansi</h4><p>Beam diuji, mobil diserahkan. Garansi resmi 2 tahun langsung aktif.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PACKAGES ============ -->
+<section class="section" style="background:var(--surface-soft);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Paket Populer</span><h2 style="margin-top:16px">Pilihan Retrofit Favorit</h2></div>
+      <p class="lead" style="max-width:40ch">Harga final tergantung tipe mobil &amp; housing. Estimasi dikonfirmasi saat konsultasi.</p>
+    </div>
+    <div class="pkg-grid">
+      <article class="pkg reveal">
+        <span class="pkg__tier">Entry</span>
+        <span class="pkg__name">HID Bi-Xenon</span>
+        <div class="pkg__price">Mulai 1,5jt<small>+ pemasangan · per pasang</small></div>
+        <ul class="pkg__list">
+          <li><i data-lucide="check"></i>Bi-xenon projector kit</li>
+          <li><i data-lucide="check"></i>Ballast digital rapid-start</li>
+          <li><i data-lucide="check"></i>5500K–6000K cool white</li>
+          <li><i data-lucide="check"></i>Garansi 2 tahun</li>
+        </ul>
+        <a class="btn btn--ghost btn--block" href="Kontak.html">Tanya Paket Ini</a>
+      </article>
+      <article class="pkg pkg--feature reveal">
+        <span class="pkg__flag">Paling Laris</span>
+        <span class="pkg__tier">Best Value</span>
+        <span class="pkg__name">Bi-LED A6 3.0″</span>
+        <div class="pkg__price">Mulai 2,8jt<small>+ pemasangan · per pasang</small></div>
+        <ul class="pkg__list">
+          <li><i data-lucide="check"></i>Aozoom A6 Bi-LED 3.0″</li>
+          <li><i data-lucide="check"></i>35W · 7200 lm · cutoff tajam</li>
+          <li><i data-lucide="check"></i>Plug &amp; Play tersedia</li>
+          <li><i data-lucide="check"></i>Sealing ulang anti-embun</li>
+          <li><i data-lucide="check"></i>Garansi resmi 2 tahun</li>
+        </ul>
+        <a class="btn btn--orange btn--block" href="Kontak.html">Booking Paket Ini</a>
+      </article>
+      <article class="pkg reveal">
+        <span class="pkg__tier">Show Build</span>
+        <span class="pkg__name">Bi-LED + Angel Eye</span>
+        <div class="pkg__price">Mulai 4,2jt<small>+ pemasangan · per pasang</small></div>
+        <ul class="pkg__list">
+          <li><i data-lucide="check"></i>Bi-LED A6 + angel eye custom</li>
+          <li><i data-lucide="check"></i>DRL sequential / running</li>
+          <li><i data-lucide="check"></i>Shroud &amp; finishing custom</li>
+          <li><i data-lucide="check"></i>Warna sesuai permintaan</li>
+          <li><i data-lucide="check"></i>Garansi resmi 2 tahun</li>
+        </ul>
+        <a class="btn btn--ghost btn--block" href="Kontak.html">Konsultasi Desain</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta">
+  <div class="cta__bg"><img src="assets/install-rocky.jpg" alt=""></div>
+  <div class="cta__inner"><div class="wrap reveal">
+    <h2 style="margin:0 auto">Belum Yakin Pilih yang Mana?</h2>
+    <p>Konsultasi beam gratis lewat WhatsApp. Kirim tipe mobil Anda, kami bantu pilihkan paket yang paling pas.</p>
+    <div class="cta__btns">
+      <a class="btn btn--wa btn--lg" id="cta-wa" href="#">Konsultasi WhatsApp</a>
+      <a class="btn btn--lg" href="Kontak.html">Lihat Kontak &amp; Lokasi</a>
+    </div>
+  </div></div>
+</section>
+
+<div id="ma-footer"></div>
+<script src="assets/site.js"></script>
+<script>
+  (function () {
+    var wa = (window.MA && window.MA.WA_LINK) || '#';
+    ['svc-wa','cta-wa'].forEach(function (id) {
+      var el = document.getElementById(id); if (!el) return;
+      el.setAttribute('href', wa); el.setAttribute('target','_blank'); el.setAttribute('rel','noopener');
+    });
+  })();
+</script>
+</body>
+</html>

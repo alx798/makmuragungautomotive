@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontak & Booking — Makmur Agung Autoshop · Aozoom Malang</title>
+<meta name="description" content="Hubungi Makmur Agung Autoshop. Workshop retrofit lampu mobil di Jl. Letjen Sutoyo No. 92 A, Blimbing, Malang. WhatsApp 0813-3034-9883.">
+<link rel="stylesheet" href="assets/site.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+.contact-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 0; border: 1px solid var(--hairline); }
+.contact-info { padding: 56px 48px; border-right: 1px solid var(--hairline); }
+.contact-form { padding: 56px 48px; background: var(--surface-soft); }
+.contact-form h2 { font-size: clamp(26px,3vw,38px); margin: 0 0 8px; }
+.contact-form .sub { font-size: 15px; color: var(--body); margin: 0 0 30px; line-height: 1.6; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-stack { display: flex; flex-direction: column; gap: 18px; }
+.form-note { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+.quick { display: flex; flex-direction: column; gap: 12px; margin: 30px 0 0; }
+.quick a { display: flex; align-items: center; gap: 16px; padding: 18px 20px; border: 1px solid var(--hairline); background: var(--surface-card); transition: border-color .16s ease, transform .12s ease; }
+.quick a:hover { border-color: var(--hairline-strong); transform: translateX(3px); }
+.quick a .q-ico { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; }
+.quick a .q-ico.wa { background: #25D366; }
+.quick a .q-ico.ig { border: 1px solid var(--hairline-strong); }
+.quick a .q-ico img { width: 22px; height: 22px; }
+.quick a .q-k { font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: .5px; text-transform: uppercase; color: var(--on-dark); }
+.quick a .q-v { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.quick a .q-ar { margin-left: auto; color: var(--muted); }
+.map { position: relative; overflow: hidden; border: 1px solid var(--hairline); height: 420px; }
+.map iframe { width: 100%; height: 100%; border: 0; filter: grayscale(0.4) invert(0.92) hue-rotate(180deg) contrast(0.9); }
+.map__pin { position: absolute; left: 24px; top: 24px; background: rgba(8,9,11,.86); backdrop-filter: blur(8px); border: 1px solid var(--hairline-strong); padding: 16px 20px; max-width: 300px; }
+.map__pin .m-k { font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: .5px; text-transform: uppercase; color: var(--on-dark); display: flex; align-items: center; gap: 8px; }
+.map__pin .m-k svg { width: 16px; height: 16px; color: var(--aozoom-orange); }
+.map__pin .m-v { font-size: 13px; color: var(--body); margin-top: 8px; line-height: 1.5; }
+.hours-grid { display: grid; grid-template-columns: 1fr auto; gap: 0; }
+.hours-grid .hr { display: contents; }
+.hours-grid .hr > span { padding: 13px 0; border-bottom: 1px solid var(--hairline); font-size: 15px; }
+.hours-grid .hr > span:first-child { font-family: var(--font-display); font-weight: 600; letter-spacing: .5px; text-transform: uppercase; font-size: 13px; color: var(--body); }
+.hours-grid .hr > span:last-child { text-align: right; color: var(--on-dark); }
+.hours-grid .hr.closed > span:last-child { color: var(--danger); }
+.hours-grid .hr.open-now > span:last-child { color: var(--success); }
+.formok { display:none; padding: 16px 18px; border: 1px solid var(--success); background: rgba(47,191,113,.1); color: var(--success); font-size: 14px; align-items: center; gap: 10px; }
+.formok.show { display: flex; }
+.formok svg { width: 18px; height: 18px; flex: 0 0 auto; }
+@media (max-width: 980px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-info { border-right: 0; border-bottom: 1px solid var(--hairline); padding: 40px 28px; }
+  .contact-form { padding: 40px 28px; }
+}
+@media (max-width: 540px) { .form-row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body data-page="kontak">
+
+<div id="ma-nav"></div>
+
+<!-- ============ PAGE HEAD ============ -->
+<header class="pagehead" data-screen-label="Kontak — header">
+  <div class="pagehead__bg"><img src="assets/install-rocky.jpg" alt="Workshop Makmur Agung Malang"></div>
+  <div class="pagehead__inner"><div class="wrap">
+    <span class="crumb"><a href="index.html">Beranda</a> &nbsp;/&nbsp; Kontak</span>
+    <h1>Kontak &amp; Booking</h1>
+    <p class="lead">Konsultasi, tanya harga, atau booking slot retrofit. Cara tercepat lewat WhatsApp — atau isi form di bawah dan kami balas secepatnya.</p>
+    <div class="beam beam-sweep" style="width:120px;margin-top:28px"></div>
+  </div></div>
+</header>
+
+<!-- ============ CONTACT GRID ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="contact-grid reveal">
+
+      <!-- info -->
+      <div class="contact-info">
+        <span class="eyebrow">Workshop Kami</span>
+        <h2 style="font-size:clamp(26px,3vw,38px);margin:16px 0 6px">Aozoom Malang</h2>
+        <p style="color:var(--body);font-size:15px;margin:0 0 8px">Reseller resmi Aozoom &amp; workshop retrofit lampu mobil.</p>
+
+        <div class="inforow">
+          <span class="inforow__ico"><i data-lucide="map-pin"></i></span>
+          <div>
+            <div class="inforow__k">Alamat</div>
+            <div class="inforow__v">Jl. Letjen Sutoyo No. 92 A, Bunulrejo,<br>Kec. Blimbing, Kota Malang,<br>Jawa Timur 65123</div>
+          </div>
+        </div>
+
+        <div class="inforow">
+          <span class="inforow__ico"><i data-lucide="phone"></i></span>
+          <div>
+            <div class="inforow__k">Telepon / WhatsApp</div>
+            <div class="inforow__v"><a id="phone-link" href="#">0813-3034-9883</a></div>
+          </div>
+        </div>
+
+        <div class="inforow">
+          <span class="inforow__ico"><i data-lucide="clock"></i></span>
+          <div style="flex:1">
+            <div class="inforow__k">Jam Buka</div>
+            <div class="hours-grid" style="margin-top:6px">
+              <div class="hr" id="hr-mon"><span>Senin–Sabtu</span><span>09.00 – 18.00</span></div>
+              <div class="hr closed"><span>Minggu</span><span>Tutup</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quick">
+          <a id="wa-quick" href="#" target="_blank" rel="noopener">
+            <span class="q-ico wa"><img src="https://cdn.simpleicons.org/whatsapp/06210f" alt="WhatsApp"></span>
+            <span><span class="q-k" style="display:block">Order via WhatsApp</span><span class="q-v">Respon cepat di jam kerja</span></span>
+            <span class="q-ar"><i data-lucide="arrow-up-right"></i></span>
+          </a>
+          <a id="ig-quick" href="#" target="_blank" rel="noopener">
+            <span class="q-ico ig"><img src="https://cdn.simpleicons.org/instagram/ff5a1f" alt="Instagram"></span>
+            <span><span class="q-k" style="display:block">@aozoom.malang</span><span class="q-v">Galeri pemasangan &amp; before/after</span></span>
+            <span class="q-ar"><i data-lucide="arrow-up-right"></i></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- form -->
+      <div class="contact-form">
+        <h2>Booking / Tanya Cepat</h2>
+        <p class="sub">Isi data Anda, kami balas via WhatsApp. Atau langsung klik tombol WhatsApp di samping untuk respon tercepat.</p>
+        <form class="form-stack" id="booking-form" novalidate>
+          <div class="form-row">
+            <div class="field"><label for="f-name">Nama</label><input class="input" id="f-name" type="text" placeholder="Nama lengkap" required></div>
+            <div class="field"><label for="f-phone">No. WhatsApp</label><input class="input" id="f-phone" type="tel" placeholder="08xx xxxx xxxx" required></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label for="f-car">Mobil</label><input class="input" id="f-car" type="text" placeholder="cth. Toyota Fortuner 2021"></div>
+            <div class="field"><label for="f-service">Layanan</label>
+              <select class="select" id="f-service">
+                <option>Retrofit Bi-LED</option>
+                <option>Pasang HID / Xenon</option>
+                <option>Angel Eye &amp; DRL Custom</option>
+                <option>Restorasi Headlamp</option>
+                <option>Konsultasi Beam</option>
+                <option>Lainnya</option>
+              </select>
+            </div>
+          </div>
+          <div class="field"><label for="f-msg">Pesan</label><textarea class="textarea" id="f-msg" placeholder="Ceritakan kebutuhan Anda — tipe mobil, kondisi lampu sekarang, atau pertanyaan."></textarea></div>
+          <div class="formok" id="form-ok"><i data-lucide="check-circle"></i><span>Membuka WhatsApp dengan data Anda — tinggal kirim.</span></div>
+          <button class="btn btn--wa btn--lg btn--block" type="submit"><img src="https://cdn.simpleicons.org/whatsapp/06210f" width="18" height="18" alt="">Kirim via WhatsApp</button>
+          <p class="form-note">Dengan mengirim, Anda akan diarahkan ke WhatsApp dengan pesan otomatis berisi data di atas. Tidak ada data yang disimpan di situs ini.</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAP ============ -->
+<section class="section section--tight" style="border-top:1px solid var(--hairline)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Lokasi</span><h2 style="margin-top:16px">Mampir ke Workshop</h2></div>
+      <a class="tlink" id="dir-link" href="#" target="_blank" rel="noopener">Buka di Google Maps <span class="ar"><i data-lucide="arrow-up-right"></i></span></a>
+    </div>
+    <div class="map reveal">
+      <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Lokasi Makmur Agung Autoshop"
+        src="https://www.google.com/maps?q=Jl.%20Letjen%20Sutoyo%20No.%2092%20A%2C%20Bunulrejo%2C%20Blimbing%2C%20Kota%20Malang&output=embed"></iframe>
+      <div class="map__pin">
+        <div class="m-k"><i data-lucide="map-pin"></i>Makmur Agung Autoshop</div>
+        <div class="m-v">Jl. Letjen Sutoyo No. 92 A, Bunulrejo, Kec. Blimbing, Kota Malang, Jawa Timur 65123</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta">
+  <div class="cta__bg"><img src="assets/install-fortuner.jpg" alt=""></div>
+  <div class="cta__inner"><div class="wrap reveal">
+    <h2 style="margin:0 auto">Respon Tercepat? Chat Langsung.</h2>
+    <p>Tim kami standby di jam kerja untuk konsultasi, estimasi harga, dan booking slot retrofit.</p>
+    <div class="cta__btns">
+      <a class="btn btn--wa btn--lg" id="cta-wa" href="#">Chat WhatsApp Sekarang</a>
+    </div>
+  </div></div>
+</section>
+
+<div id="ma-footer"></div>
+<script src="assets/site.js"></script>
+<script>
+  (function () {
+    var M = window.MA || {};
+    var wa = M.WA_LINK || '#';
+    ['wa-quick','cta-wa'].forEach(function (id) { var e=document.getElementById(id); if(e){ e.setAttribute('href',wa); e.setAttribute('target','_blank'); } });
+    var ph = document.getElementById('phone-link'); if (ph) ph.setAttribute('href', 'tel:+' + (M.WA_NUMBER || '6281330349883'));
+    var iq = document.getElementById('ig-quick'); if (iq && M.IG_LINK) iq.setAttribute('href', M.IG_LINK);
+    var dl = document.getElementById('dir-link'); if (dl && M.MAPS_LINK) dl.setAttribute('href', M.MAPS_LINK);
+
+    // open-now highlight
+    try {
+      var now = new Date();
+      var day = now.getDay(); // 0 = Sunday
+      var hr = now.getHours();
+      var open = (day >= 1 && day <= 6 && hr >= 9 && hr < 18);
+      if (open) { var row = document.getElementById('hr-mon'); if (row) row.classList.add('open-now'); }
+    } catch (e) {}
+
+    // form -> WhatsApp deep link
+    var form = document.getElementById('booking-form');
+    if (form) form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = (document.getElementById('f-name').value || '').trim();
+      var phone = (document.getElementById('f-phone').value || '').trim();
+      var car = (document.getElementById('f-car').value || '').trim();
+      var svc = document.getElementById('f-service').value;
+      var msg = (document.getElementById('f-msg').value || '').trim();
+      if (!name || !phone) { alert('Mohon isi Nama dan No. WhatsApp.'); return; }
+      var lines = [
+        'Halo Aozoom Malang, saya ingin booking/konsultasi.',
+        '', 'Nama: ' + name, 'WhatsApp: ' + phone,
+        car ? 'Mobil: ' + car : '', 'Layanan: ' + svc,
+        msg ? 'Pesan: ' + msg : ''
+      ].filter(Boolean);
+      var url = 'https://wa.me/' + (M.WA_NUMBER || '6281330349883') + '?text=' + encodeURIComponent(lines.join('\n'));
+      var ok = document.getElementById('form-ok'); if (ok) ok.classList.add('show');
+      if (window.lucide) window.lucide.createIcons();
+      window.open(url, '_blank', 'noopener');
+    });
+  })();
+</script>
+</body>
+</html>

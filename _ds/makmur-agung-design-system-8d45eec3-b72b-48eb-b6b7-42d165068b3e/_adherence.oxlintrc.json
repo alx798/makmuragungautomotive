@@ -1,0 +1,202 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "ui_kits/storefront/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Saira|Saira Condensed|Saira Semi Condensed))/i]",
+        "message": "Font not provided by the design system. Available: Saira, Saira Condensed, Saira Semi Condensed."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {},
+    "tokens": [
+      "--amber",
+      "--aozoom-amber",
+      "--aozoom-orange",
+      "--aozoom-orange-deep",
+      "--beam-blue",
+      "--beam-cyan",
+      "--beam-glow",
+      "--beam-gradient",
+      "--beam-white",
+      "--body",
+      "--body-md",
+      "--body-md-lh",
+      "--body-sm",
+      "--body-sm-lh",
+      "--body-strong",
+      "--canvas",
+      "--caption",
+      "--caption-lh",
+      "--caption-track",
+      "--danger",
+      "--display-lg",
+      "--display-lg-lh",
+      "--display-md",
+      "--display-md-lh",
+      "--display-sm",
+      "--display-sm-lh",
+      "--display-xl",
+      "--display-xl-lh",
+      "--font-body",
+      "--font-display",
+      "--font-mono",
+      "--hairline",
+      "--hairline-strong",
+      "--ignite-glow",
+      "--ignite-gradient",
+      "--label",
+      "--label-lh",
+      "--label-track",
+      "--led-glow",
+      "--muted",
+      "--on-dark",
+      "--radius-full",
+      "--radius-md",
+      "--radius-none",
+      "--radius-sm",
+      "--radius-xs",
+      "--shadow-card",
+      "--shadow-none",
+      "--shadow-pop",
+      "--space-lg",
+      "--space-md",
+      "--space-section",
+      "--space-sm",
+      "--space-xl",
+      "--space-xs",
+      "--space-xxl",
+      "--space-xxs",
+      "--success",
+      "--surface-carbon",
+      "--surface-card",
+      "--surface-elevated",
+      "--surface-soft",
+      "--title-lg",
+      "--title-lg-lh",
+      "--title-md",
+      "--title-md-lh",
+      "--title-sm",
+      "--title-sm-lh",
+      "--warning"
+    ],
+    "tokenKinds": {
+      "--font-display": "font",
+      "--font-body": "font",
+      "--font-mono": "font",
+      "--aozoom-orange": "color",
+      "--aozoom-orange-deep": "color",
+      "--aozoom-amber": "color",
+      "--beam-white": "color",
+      "--beam-cyan": "color",
+      "--beam-blue": "color",
+      "--beam-gradient": "color",
+      "--beam-glow": "shadow",
+      "--ignite-gradient": "color",
+      "--ignite-glow": "color",
+      "--led-glow": "color",
+      "--amber": "color",
+      "--canvas": "color",
+      "--surface-soft": "color",
+      "--surface-card": "color",
+      "--surface-elevated": "color",
+      "--surface-carbon": "color",
+      "--hairline": "color",
+      "--hairline-strong": "color",
+      "--on-dark": "color",
+      "--body": "color",
+      "--body-strong": "color",
+      "--muted": "color",
+      "--success": "color",
+      "--warning": "color",
+      "--danger": "color",
+      "--space-xxs": "spacing",
+      "--space-xs": "spacing",
+      "--space-sm": "spacing",
+      "--space-md": "spacing",
+      "--space-lg": "spacing",
+      "--space-xl": "spacing",
+      "--space-xxl": "spacing",
+      "--space-section": "spacing",
+      "--radius-none": "radius",
+      "--radius-xs": "radius",
+      "--radius-sm": "radius",
+      "--radius-md": "radius",
+      "--radius-full": "radius",
+      "--shadow-none": "shadow",
+      "--shadow-card": "shadow",
+      "--shadow-pop": "shadow",
+      "--display-xl": "spacing",
+      "--display-xl-lh": "other",
+      "--display-lg": "spacing",
+      "--display-lg-lh": "other",
+      "--display-md": "spacing",
+      "--display-md-lh": "other",
+      "--display-sm": "spacing",
+      "--display-sm-lh": "other",
+      "--title-lg": "spacing",
+      "--title-lg-lh": "other",
+      "--title-md": "spacing",
+      "--title-md-lh": "other",
+      "--title-sm": "spacing",
+      "--title-sm-lh": "other",
+      "--label": "spacing",
+      "--label-lh": "other",
+      "--label-track": "spacing",
+      "--body-md": "spacing",
+      "--body-md-lh": "other",
+      "--body-sm": "spacing",
+      "--body-sm-lh": "other",
+      "--caption": "spacing",
+      "--caption-lh": "other",
+      "--caption-track": "spacing"
+    },
+    "fontFamilies": [
+      "Saira",
+      "Saira Condensed",
+      "Saira Semi Condensed"
+    ]
+  }
+}

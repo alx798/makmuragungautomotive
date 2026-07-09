@@ -1,0 +1,223 @@
+/* ============================================================
+   MAKMUR AGUNG AUTOMOTIVE — Design Tokens
+   Authorized reseller of Aozoom automotive lighting
+   ------------------------------------------------------------
+   Premium dark-automotive system. Near-black canvas, full-bleed
+   photography, heavy condensed display + light body, sharp
+   0-radius geometry. Signature accent is the "Beam" — an electric
+   cool-white→cyan→blue that echoes Aozoom's 5500–6000K LED output.
+
+   NOTE: This is an ORIGINAL identity for Makmur Agung. It is NOT
+   BMW M and uses none of BMW's trademarked marks (no roundel, no
+   M tricolor, no BMW Type). Fonts are Saira / Saira Condensed.
+   ============================================================ */
+
+/* Load brand fonts (Google Fonts). For offline use, self-host the
+   files in /fonts and swap these for @font-face rules. */
+@import url('https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600&family=Saira+Condensed:wght@400;500;600;700&family=Saira+Semi+Condensed:wght@500;600;700&display=swap');
+
+:root {
+  /* ---------- FONT FAMILIES ---------- */
+  --font-display: "Saira Condensed", "Saira Semi Condensed", Impact, sans-serif;
+  --font-body: "Saira", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Saira Semi Condensed", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* ============================================================
+     COLOR — BRAND / SIGNATURE "IGNITION" STRIPE (Aozoom orange)
+     The Ignition stripe is the system's one decorative voltage and
+     signals the Aozoom partnership. Used as a 3px luminous divider,
+     the wordmark mark, active states, focus rings, and as a warm
+     glow behind product/headlight imagery. NEVER a flat background
+     wash — it is a brand-identity marker (and primary CTA accent).
+     ============================================================ */
+  --aozoom-orange:      #FF5A1F;  /* primary brand accent (Aozoom)  */
+  --aozoom-orange-deep: #E8431F;  /* Aozoom plate red-orange        */
+  --aozoom-amber:       #FFB24D;  /* hot amber, head of the stripe  */
+
+  /* Legacy aliases (kept so existing markup keeps working) */
+  --beam-white: var(--aozoom-amber);
+  --beam-cyan:  var(--aozoom-orange);
+  --beam-blue:  var(--aozoom-orange-deep);
+  --beam-gradient: linear-gradient(90deg, var(--aozoom-amber) 0%, var(--aozoom-orange) 50%, var(--aozoom-orange-deep) 100%);
+  --beam-glow: 0 0 24px rgba(255,90,31,0.45);
+  /* Convenience names */
+  --ignite-gradient: var(--beam-gradient);
+  --ignite-glow: var(--beam-glow);
+
+  /* Cool LED glow — kept only for literal headlight-beam imagery */
+  --led-glow: rgba(120,180,255,0.40);
+
+  /* Amber — DRL / turn-signal warm. Folds into the brand orange. */
+  --amber: #FFB020;
+
+  /* ---------- COLOR — SURFACES ---------- */
+  --canvas:           #08090B;  /* true page floor, near-black   */
+  --surface-soft:     #101114;  /* spec strips, footer-adjacent  */
+  --surface-card:     #16181C;  /* cards, secondary buttons      */
+  --surface-elevated: #1F2228;  /* nested cards inside dark bands */
+  --surface-carbon:   #25282E;  /* technical / spec cells        */
+
+  /* ---------- COLOR — HAIRLINES / BORDERS ---------- */
+  --hairline:        #2A2D34;   /* 1px divider on dark           */
+  --hairline-strong: #3A3E47;   /* emphasized border / focus     */
+
+  /* ---------- COLOR — TEXT ---------- */
+  --on-dark:     #FFFFFF;  /* headlines + primary text          */
+  --body:        #B5BAC2;  /* running body copy (cool gray)     */
+  --body-strong: #E6E9ED;  /* lead paragraph / emphasis         */
+  --muted:       #7A8088;  /* captions, breadcrumbs, fine print */
+
+  /* ---------- COLOR — SEMANTIC ---------- */
+  --success: #2FBF71;  /* in-stock, order confirmed             */
+  --warning: #FFB020;  /* fitment / technical caution           */
+  --danger:  #FF4D4D;  /* out-of-stock, errors                  */
+
+  /* ============================================================
+     SPACING — 4px base unit
+     ============================================================ */
+  --space-xxs: 4px;
+  --space-xs:  8px;
+  --space-sm:  12px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  40px;
+  --space-xxl: 64px;
+  --space-section: 96px;
+
+  /* ============================================================
+     RADIUS — "almost always 0, sometimes circular"
+     ============================================================ */
+  --radius-none: 0px;     /* default: buttons, cards, inputs, photos */
+  --radius-xs:   2px;     /* legal CTAs only                          */
+  --radius-sm:   4px;     /* toggle pills, small chips                */
+  --radius-md:   6px;     /* dropdown menu items                      */
+  --radius-full: 9999px;  /* circular icon buttons / carousel arrows  */
+
+  /* ============================================================
+     ELEVATION — depth from photography, not chrome.
+     Shadows used sparingly; the beam-glow does the "lit" work.
+     ============================================================ */
+  --shadow-none: none;
+  --shadow-card: 0 1px 0 0 var(--hairline);          /* hairline lift */
+  --shadow-pop:  0 12px 40px rgba(0,0,0,0.55);        /* menus/dialogs */
+
+  /* ============================================================
+     TYPE SCALE  (size / weight / line-height / tracking)
+     Display = Saira Condensed 700 UPPERCASE.
+     Body    = Saira 300/400 sentence case.
+     ============================================================ */
+  --display-xl: 80px;  --display-xl-lh: 1.0;
+  --display-lg: 56px;  --display-lg-lh: 1.05;
+  --display-md: 40px;  --display-md-lh: 1.1;
+  --display-sm: 32px;  --display-sm-lh: 1.15;
+  --title-lg:   24px;  --title-lg-lh: 1.3;
+  --title-md:   20px;  --title-md-lh: 1.4;
+  --title-sm:   18px;  --title-sm-lh: 1.4;
+  --label:      14px;  --label-lh: 1.3;   --label-track: 1.5px;
+  --body-md:    16px;  --body-md-lh: 1.55;
+  --body-sm:    14px;  --body-sm-lh: 1.5;
+  --caption:    12px;  --caption-lh: 1.4; --caption-track: 0.5px;
+}
+
+/* ============================================================
+   SEMANTIC ELEMENT STYLES
+   Use these classes or copy their declarations. Headlines are
+   UPPERCASE 700 condensed; body is light, sentence case.
+   ============================================================ */
+
+.ds-canvas { background: var(--canvas); color: var(--body); font-family: var(--font-body); }
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--display-xl);
+  line-height: var(--display-xl-lh);
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  color: var(--on-dark);
+  margin: 0;
+}
+h2, .h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--display-lg);
+  line-height: var(--display-lg-lh);
+  text-transform: uppercase;
+  color: var(--on-dark);
+  margin: 0;
+}
+h3, .h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--display-md);
+  line-height: var(--display-md-lh);
+  text-transform: uppercase;
+  color: var(--on-dark);
+  margin: 0;
+}
+.display-sm {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--display-sm);
+  line-height: var(--display-sm-lh);
+  text-transform: uppercase;
+  color: var(--on-dark);
+}
+.title-lg {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--title-lg);
+  line-height: var(--title-lg-lh);
+  color: var(--on-dark);
+}
+.title-md {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--title-md);
+  line-height: var(--title-md-lh);
+  color: var(--body-strong);
+}
+
+p, .body-md {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: var(--body-md);
+  line-height: var(--body-md-lh);
+  color: var(--body);
+  margin: 0;
+}
+.body-sm {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: var(--body-sm);
+  line-height: var(--body-sm-lh);
+  color: var(--body);
+}
+.caption {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--caption);
+  line-height: var(--caption-lh);
+  letter-spacing: var(--caption-track);
+  color: var(--muted);
+}
+
+/* Uppercase machined label — category tabs, inline "LIHAT SEMUA" links */
+.label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--label);
+  line-height: var(--label-lh);
+  letter-spacing: var(--label-track);
+  text-transform: uppercase;
+  color: var(--on-dark);
+}
+
+/* ---------- The signature Beam divider ---------- */
+.beam-divider {
+  height: 3px;
+  width: 100%;
+  background: var(--beam-gradient);
+  box-shadow: var(--beam-glow);
+  border: 0;
+}

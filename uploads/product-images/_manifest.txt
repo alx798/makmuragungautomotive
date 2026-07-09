@@ -1,0 +1,32 @@
+Aozoom 2026 Catalog - extracted product hero images
+Crop: page top -> just above price bar (matches reference). ~3000px wide, JPEG q92.
+
+01-white-wolf.jpg	(catalog p.5)	White Wolf
+02-trigrams-delta.jpg	(catalog p.6)	Trigrams Delta
+03-ember.jpg	(catalog p.7)	Ember
+04-wolf.jpg	(catalog p.8)	Wolf
+05-leo.jpg	(catalog p.9)	Leo
+06-omega-laser.jpg	(catalog p.10)	Omega Laser
+07-square-v1.jpg	(catalog p.12)	Square V-I
+08-square-v2.jpg	(catalog p.13)	Square V-II
+09-square-v3.jpg	(catalog p.14)	Square V-III
+10-captain.jpg	(catalog p.16)	Captain
+11-black-fox.jpg	(catalog p.17)	Black Fox
+12-barricade.jpg	(catalog p.19)	Barricade
+13-crusher.jpg	(catalog p.20)	Crusher
+14-prime.jpg	(catalog p.21)	Prime
+15-megatron.jpg	(catalog p.22)	Megatron
+16-ta25-toyota-veloz.jpg	(catalog p.24)	TA25 Toyota Veloz 2023+
+17-innova-zenix-kit.jpg	(catalog p.25)	Innova Zenix 2023+ Kit
+18-trigrams-stone.jpg	(catalog p.27)	Trigrams Stone
+19-ant-2-single-color.jpg	(catalog p.28)	ANT 2.0 (1 Color)
+20-ant-2-three-color.jpg	(catalog p.29)	ANT 2.0 (3 Color)
+21-wasp.jpg	(catalog p.30)	Wasp
+22-colorshift.jpg	(catalog p.31)	Colorshift Special Edition
+23-va25-vinfast-vf3-basic.jpg	(catalog p.33)	VA25 VinFast VF3 Basic
+24-va25-vinfast-vf3-plus.jpg	(catalog p.34)	VA25 VinFast VF3 Plus
+25-h4-mini.jpg	(catalog p.36)	H4/Mini
+26-w1-mini-slim.jpg	(catalog p.37)	W1 Mini Slim
+27-w2-dual-lens.jpg	(catalog p.38)	W2 Dual Lens
+28-impactor.jpg	(catalog p.39)	Impactor
+29-mini-impactor.jpg	(catalog p.40)	Mini Impactor

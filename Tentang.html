@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tentang Kami · Makmur Agung Automotive · Aozoom Malang</title>
+<meta name="description" content="Makmur Agung Automotive, reseller resmi Aozoom dan workshop retrofit lampu mobil di Malang. Teknisi bersertifikat, part asli, garansi resmi.">
+<link rel="stylesheet" href="assets/site.css">
+<script defer src="https://unpkg.com/lucide@latest"></script>
+<style>
+.intro-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 64px; align-items: center; }
+.intro-grid .photo { aspect-ratio: 2/3; }
+.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.partner { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--hairline); }
+.partner__media { position: relative; overflow: hidden; min-height: 380px; }
+.partner__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.partner__body { padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; }
+.partner__body h2 { font-size: clamp(30px,3.5vw,46px); margin: 14px 0 18px; }
+.cert-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+@media (max-width: 980px) {
+  .intro-grid { grid-template-columns: 1fr; gap: 36px; }
+  .intro-grid .photo { aspect-ratio: 2/3; max-width: 460px; margin: 0 auto; width: 100%; }
+  .values-grid { grid-template-columns: 1fr; }
+  .partner { grid-template-columns: 1fr; }
+  .partner__media { min-height: 280px; }
+  .partner__body { padding: 38px 28px; }
+}
+</style>
+</head>
+<body data-page="tentang">
+
+<div id="ma-nav"></div>
+
+<!-- ============ PAGE HEAD ============ -->
+<header class="pagehead" data-screen-label="Tentang — header">
+  <div class="pagehead__bg"><img src="assets/install-rocky.jpg" alt="Workshop Makmur Agung Malang"></div>
+  <div class="pagehead__inner"><div class="wrap">
+    <span class="crumb"><a href="index.html">Beranda</a> &nbsp;/&nbsp; Tentang</span>
+    <h1>Workshop Cahaya, Sejak 2025.</h1>
+    <p class="lead">Makmur Agung Automotive adalah reseller resmi Aozoom dan workshop retrofit lampu mobil di Malang. Kami bukan toko aksesori, kami spesialis cahaya yang memasang setiap part dengan presisi.</p>
+    <div class="beam beam-sweep" style="width:120px;margin-top:28px"></div>
+  </div></div>
+</header>
+
+<!-- ============ INTRO ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="intro-grid">
+      <div class="reveal">
+        <span class="eyebrow">Siapa Kami</span>
+        <h2 style="margin:16px 0 22px;font-size:clamp(30px,4vw,50px)">Spesialis Retrofit<br></h2>
+        <p class="lead" style="margin-bottom:20px">Berawal dari kecintaan pada dunia modifikasi cahaya, Makmur Agung tumbuh menjadi salah satu workshop retrofit terpercaya di Malang. Kami fokus pada satu hal dan menguasainya: membuat mobil Anda lebih terang, lebih jauh, dan lebih tajam.</p>
+        <p style="color:var(--body);line-height:1.7">Sebagai reseller resmi Aozoom, kami hanya memakai part asli bersertifikat. Setiap pengerjaan dilakukan teknisi berpengalaman, diukur, dipasang rapi, dan diuji beam-nya. Hasilnya bukan sekadar terang — tapi terang yang aman dan tahan lama.</p>
+        <div style="margin-top:30px;display:flex;gap:13px;flex-wrap:wrap">
+          <a class="btn btn--orange" href="Layanan.html">Lihat Layanan</a>
+          <a class="btn btn--ghost" id="intro-wa" href="#">Kunjungi Workshop</a>
+        </div>
+      </div>
+      <div class="photo reveal"><img src="assets/innova-reborn.png" alt="Toyota Innova Reborn dengan retrofit headlamp Bi-LED Aozoom di workshop Makmur Agung Malang"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AOZOOM PARTNER ============ -->
+<section class="section" style="border-top:1px solid var(--hairline)">
+  <div class="wrap">
+    <div class="partner reveal">
+      <div class="partner__media"><img src="assets/install-rocky.jpg" alt="Produk lighting Aozoom terpasang"><div class="photo__scrim-l"></div></div>
+      <div class="partner__body">
+        <span class="eyebrow">Reseller Resmi</span>
+        <h2>Authorized<br>Aozoom Partner.</h2>
+        <p class="lead">Aozoom adalah brand lighting otomotif dengan lini Bi-LED projector (A5+, A6, CLPD, laser AAPD), LED dan DRL. Sebagai partner resmi di Malang, kami menjamin keaslian setiap part dan garansi resmi.</p>
+        <div class="cert-row">
+          <span class="chip"><i data-lucide="shield-check"></i>E-MARK</span>
+          <span class="chip"><i data-lucide="shield-check"></i>DOT</span>
+          <span class="chip"><i data-lucide="award"></i>ISO 9001</span>
+          <span class="chip"><i data-lucide="badge-check"></i>Garansi 2 Tahun</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VALUES ============ -->
+<section class="section" style="background:var(--surface-soft);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Prinsip Kerja</span><h2 style="margin-top:16px">Yang Kami Pegang.</h2></div>
+    </div>
+    <div class="values-grid">
+      <div class="feat reveal"><span class="feat__ico"><i data-lucide="badge-check"></i></span><h4>Part Asli Saja</h4><p>Hanya Aozoom resmi bersertifikat E-MARK &amp; DOT. Kami tidak menjual KW, karena cahaya menyangkut keselamatan.</p></div>
+      <div class="feat reveal"><span class="feat__ico"><i data-lucide="ruler"></i></span><h4>Presisi, Bukan Asal</h4><p>Setiap beam diukur dan disetting. Cutoff harus tajam, fokus ke jalan, tidak menyilaukan lawan arah.</p></div>
+      <div class="feat reveal"><span class="feat__ico"><i data-lucide="hand-heart"></i></span><h4>Rapi &amp; Jujur</h4><p>Pengerjaan bersih, estimasi transparan, dan garansi yang benar-benar bisa diklaim tanpa ribet.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta">
+  <div class="cta__bg"><img src="assets/install-fortuner.jpg" alt=""></div>
+  <div class="cta__inner"><div class="wrap reveal">
+    <h2 style="margin:0 auto">Mampir ke Workshop Kami</h2>
+    <p>Lihat langsung hasil retrofit dan ngobrol soal mobil Anda. Workshop kami di Blimbing, Malang, buka setiap hari.</p>
+    <div class="cta__btns">
+      <a class="btn btn--orange btn--lg" href="Kontak.html">Lihat Lokasi &amp; Jam Buka</a>
+      <a class="btn btn--lg" id="cta-wa" href="#">Chat WhatsApp</a>
+    </div>
+  </div></div>
+</section>
+
+<div id="ma-footer"></div>
+<script src="assets/site.js"></script>
+<script>
+  (function () {
+    var wa = (window.MA && window.MA.WA_LINK) || '#';
+    ['intro-wa','cta-wa'].forEach(function (id) {
+      var el = document.getElementById(id); if (!el) return;
+      el.setAttribute('href', wa); el.setAttribute('target','_blank'); el.setAttribute('rel','noopener');
+    });
+  })();
+</script>
+</body>
+</html>

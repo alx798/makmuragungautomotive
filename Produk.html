@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produk · Katalog Aozoom · Makmur Agung Automotive</title>
+<meta name="description" content="Katalog produk lampu mobil Aozoom: Bi-LED projector, square &amp; matrix headlamp, laser premium, foglamp, mini projector, dan kit plug &amp; play. Harga &amp; spesifikasi lengkap. Garansi resmi 2 tahun.">
+<link rel="stylesheet" href="assets/site.css">
+<script defer src="https://unpkg.com/lucide@latest"></script>
+<style>
+/* ============================================================
+   PRODUK — catalog page (Makmur Agung design system)
+   ============================================================ */
+
+/* ---- Sticky filter bar ---- */
+.catbar {
+  position: sticky; top: 76px; z-index: 50;
+  background: rgba(8,9,11,.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--hairline);
+}
+.catbar__inner { display: flex; align-items: center; gap: 20px; padding: 16px 0; flex-wrap: wrap; }
+.catbar__filters { display: flex; gap: 8px; flex-wrap: wrap; flex: 1; }
+.fbtn {
+  font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--body); white-space: nowrap;
+  height: 38px; padding: 0 16px; background: var(--surface-card);
+  border: 1px solid var(--hairline); border-radius: var(--radius-sm);
+  transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+.fbtn:hover { border-color: var(--hairline-strong); color: var(--on-dark); }
+.fbtn.is-on { background: var(--aozoom-orange); border-color: var(--aozoom-orange); color: #160500; }
+.catbar__count {
+  font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--muted); white-space: nowrap; flex: 0 0 auto;
+}
+.catbar__count b { color: var(--aozoom-orange); }
+
+/* ---- Product grid ---- */
+.prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+
+/* ---- Product card ---- */
+.prod {
+  background: var(--surface-card); border: 1px solid var(--hairline);
+  display: flex; flex-direction: column; min-height: 100%;
+  transition: border-color .18s ease, transform .18s ease;
+}
+.prod:hover { border-color: var(--aozoom-orange); transform: translateY(-4px); }
+
+/* media / poster */
+.prod__media { position: relative; aspect-ratio: 1 / 1; overflow: hidden; background: #050608; border-bottom: 1px solid var(--hairline); }
+.prod__media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s cubic-bezier(.22,.61,.36,1); }
+.prod:hover .prod__media img { transform: scale(1.045); }
+.prod__beam { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--beam-gradient); box-shadow: var(--beam-glow); opacity: 0; transition: opacity .18s ease; z-index: 3; }
+.prod:hover .prod__beam { opacity: 1; }
+.prod__tags { position: absolute; top: 12px; left: 12px; right: 12px; display: flex; flex-wrap: wrap; gap: 6px; z-index: 2; }
+.badge {
+  font-family: var(--font-display); font-weight: 600; font-size: 10px; letter-spacing: 1.2px;
+  text-transform: uppercase; padding: 4px 9px; border-radius: var(--radius-sm); line-height: 1;
+  display: inline-flex; align-items: center; backdrop-filter: blur(4px);
+}
+.badge--new   { background: var(--aozoom-orange); color: #160500; }
+.badge--laser { background: var(--danger); color: #fff; }
+.badge--plug  { background: var(--success); color: #04190d; }
+.badge--ip    { background: rgba(8,9,11,.6); color: var(--aozoom-amber); border: 1px solid var(--hairline-strong); }
+
+/* body */
+.prod__body { padding: 16px 18px 0; display: flex; flex-direction: column; flex: 1; }
+.prod__cat { font-family: var(--font-display); font-weight: 600; font-size: 10.5px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--aozoom-orange); }
+.prod__name { font-family: var(--font-display); font-weight: 700; font-size: 20px; line-height: 1.05; text-transform: uppercase; color: var(--on-dark); margin: 6px 0 5px; }
+.prod__type { font-size: 12.5px; line-height: 1.45; color: var(--muted); margin: 0; }
+.prod__fit { display: flex; gap: 7px; align-items: flex-start; margin: 11px 0 0; font-size: 12px; line-height: 1.45; color: var(--body-strong); }
+.prod__fit svg { width: 14px; height: 14px; color: var(--aozoom-orange); flex: 0 0 auto; margin-top: 1px; }
+
+/* compact spec chips */
+.prod__chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 13px 0 2px; }
+.chip {
+  font-family: var(--font-display); font-weight: 600; font-size: 10px; letter-spacing: .8px; text-transform: uppercase;
+  color: var(--body); background: var(--surface-soft); border: 1px solid var(--hairline);
+  padding: 5px 9px; border-radius: var(--radius-sm); display: inline-flex; align-items: center; line-height: 1;
+}
+.chip b { color: var(--aozoom-amber); font-weight: 700; margin-left: 4px; }
+.kdot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; box-shadow: 0 0 6px currentColor; }
+.prod__note { display: flex; gap: 7px; align-items: flex-start; margin: 12px 0 0; font-size: 11.5px; line-height: 1.4; color: var(--warning); }
+.prod__note svg { width: 13px; height: 13px; flex: 0 0 auto; margin-top: 2px; }
+
+/* footer */
+.prod__foot { margin-top: auto; padding: 14px 18px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.prod__price { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.prod__price .pk { font-family: var(--font-display); font-weight: 600; font-size: 9.5px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); }
+.prod__price .pv { font-family: var(--font-display); font-weight: 700; font-size: 21px; color: var(--aozoom-orange); line-height: 1; white-space: nowrap; }
+.prod__wa {
+  flex: 1 1 auto; display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 46px; padding: 0 16px;
+  background: var(--aozoom-orange); color: #160500; border: none;
+  font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+  text-decoration: none; transition: filter .15s ease, transform .15s ease;
+}
+.prod__wa:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+/* warranty banner */
+.cat-note { display: flex; align-items: center; gap: 14px; padding: 22px 26px; background: var(--surface-soft); border: 1px solid var(--hairline); margin-bottom: 40px; }
+.cat-note svg { width: 22px; height: 22px; color: var(--aozoom-orange); flex: 0 0 auto; }
+.cat-note p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--body-strong); }
+.cat-note b { color: var(--on-dark); font-weight: 400; }
+
+.load-error { grid-column: 1 / -1; text-align: center; padding: 80px 20px; color: var(--muted); font-size: 16px; }
+
+@media (max-width: 980px) {
+  .prod-grid { grid-template-columns: repeat(2, 1fr); }
+  .catbar { top: 0; }
+}
+@media (max-width: 600px) {
+  .prod-grid { grid-template-columns: 1fr; }
+  .catbar__inner { gap: 12px; }
+  .catbar__count { width: 100%; }
+}
+</style>
+</head>
+<body data-page="produk">
+
+<div id="ma-nav"></div>
+
+<!-- ============ PAGE HEAD ============ -->
+<header class="pagehead" data-screen-label="Produk — header">
+  <div class="pagehead__bg"><img src="assets/install-rocky.jpg" alt="Headlamp Bi-LED Aozoom dengan angel eye pada Daihatsu Rocky"></div>
+  <div class="pagehead__inner"><div class="wrap">
+    <span class="crumb"><a href="index.html">Beranda</a> &nbsp;/&nbsp; Produk</span>
+    <h1>Katalog Lampu Aozoom</h1>
+    <p class="lead">Bi-LED projector, square &amp; matrix headlamp, laser premium, foglamp, mini projector, sampai kit plug &amp; play OEM-fit. Spesifikasi lengkap, harga transparan, semua resmi dengan garansi 2 tahun.</p>
+    <div class="beam beam-sweep" style="width:120px;margin-top:28px"></div>
+  </div></div>
+</header>
+
+<!-- ============ CATEGORY FILTER BAR ============ -->
+<div class="catbar">
+  <div class="wrap"><div class="catbar__inner">
+    <div class="catbar__filters" id="cat-filters"></div>
+    <div class="catbar__count" id="cat-count"></div>
+  </div></div>
+</div>
+
+<!-- ============ PRODUCT GRID ============ -->
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="cat-note">
+      <i data-lucide="shield-check"></i>
+      <p><b>Semua produk Aozoom resmi · garansi 2 tahun.</b> Harga belum termasuk jasa pemasangan, chat WhatsApp untuk estimasi retrofit sesuai mobil Anda.</p>
+    </div>
+    <div class="prod-grid" id="prod-grid">
+      <p class="load-error" id="grid-loading">Memuat katalog produk…</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="cta">
+  <div class="cta__bg"><img src="assets/install-fortuner.jpg" alt=""></div>
+  <div class="cta__inner"><div class="wrap reveal">
+    <span class="eyebrow eyebrow--plain" style="justify-content:center;display:flex">Butuh Rekomendasi?</span>
+    <h2 style="margin-top:14px">Bingung Pilih Lampu yang Cocok?</h2>
+    <p>Tim kami bantu pilih produk Aozoom yang pas untuk mobil dan kebutuhan beam Anda. Konsultasi gratis via WhatsApp.</p>
+    <div class="cta__btns">
+      <a class="btn btn--orange btn--lg" href="Kontak.html">Booking Retrofit</a>
+      <a class="btn btn--lg" id="cta-wa" href="#">Konsultasi WhatsApp</a>
+    </div>
+  </div></div>
+</section>
+
+<div id="ma-footer"></div>
+
+<script src="assets/site.js"></script>
+<script src="data/products.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var GRID = document.getElementById('prod-grid');
+  var FILTERS = document.getElementById('cat-filters');
+  var COUNT = document.getElementById('cat-count');
+
+  function rupiah(n) { return 'Rp ' + Number(n).toLocaleString('id-ID'); }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  // Map first Kelvin value -> a beam-color dot
+  function kelvinColor(temp) {
+    var m = String(temp).match(/(\d{4})/);
+    var k = m ? parseInt(m[1], 10) : 5500;
+    if (k <= 3500) return '#FFB24D';   // warm amber
+    if (k <= 4800) return '#FFE6C2';   // warm white
+    if (k <= 5800) return '#F4F7FF';   // cool white
+    return '#CFE3FF';                  // cool blue-white
+  }
+
+  var TAGS = {
+    'new-arrival':   { cls: 'badge--new',   label: 'Baru' },
+    'laser':         { cls: 'badge--laser', label: 'Laser' },
+    'plug-and-play': { cls: 'badge--plug',  label: 'Plug & Play' }
+  };
+
+  function waLink(product) {
+    var num = (window.MA && window.MA.WA_NUMBER) || '6281220599998';
+    var lines = [
+      'Halo Aozoom Malang, saya tertarik dengan produk berikut:',
+      '',
+      'Produk: ' + product.name,
+      'Tipe: ' + product.type,
+      'Harga: ' + rupiah(product.price_idr),
+      '',
+      'Bisa info ketersediaan & estimasi pemasangan?'
+    ];
+    return 'https://wa.me/' + num + '?text=' + encodeURIComponent(lines.join('\n'));
+  }
+
+  function specRow(icon, key, value) {
+    return '<div class="srow"><span class="srow__k"><i data-lucide="' + icon + '"></i>' + key + '</span>' +
+           '<span class="srow__v">' + value + '</span></div>';
+  }
+
+  function card(p, catLabel) {
+    var tags = (p.tags || []).map(function (t) {
+      var def = TAGS[t]; if (!def) return '';
+      return '<span class="badge ' + def.cls + '">' + def.label + '</span>';
+    }).join('');
+    if (p.waterproof) tags += '<span class="badge badge--ip">' + esc(p.waterproof) + '</span>';
+
+    var fit = (p.vehicles && p.vehicles.length)
+      ? '<p class="prod__fit"><i data-lucide="car"></i><span>Cocok untuk: ' + esc(p.vehicles.join(', ')) + '</span></p>'
+      : '';
+
+    var kdot = '<span class="kdot" style="color:' + kelvinColor(p.color_temp) + ';background:' + kelvinColor(p.color_temp) + '"></span>';
+
+    var note = p.price_note
+      ? '<p class="prod__note"><i data-lucide="triangle-alert"></i><span>' + esc(p.price_note) + '</span></p>'
+      : '';
+
+    var chips =
+      '<span class="chip">' + esc(p.size) + '</span>' +
+      '<span class="chip">' + kdot + esc(p.color_temp) + '</span>' +
+      '<span class="chip">Low <b>' + p.specs.low_beam_w + 'W</b></span>' +
+      '<span class="chip">High <b>' + p.specs.high_beam_w + 'W</b></span>' +
+      '<span class="chip">' + esc(p.specs.chip) + '</span>';
+
+    var img = 'assets/product-images/' + p.id + '.jpg';
+
+    return '<article class="prod" data-category="' + p.category + '">' +
+      '<div class="prod__media">' +
+        '<span class="prod__beam"></span>' +
+        '<div class="prod__tags">' + tags + '</div>' +
+        '<img src="' + img + '" alt="' + esc(p.name) + ' · ' + esc(p.type) + ' Aozoom" loading="lazy" decoding="async">' +
+      '</div>' +
+      '<div class="prod__body">' +
+        '<span class="prod__cat">' + esc(catLabel) + '</span>' +
+        '<h3 class="prod__name">' + esc(p.name) + '</h3>' +
+        '<p class="prod__type">' + esc(p.type) + '</p>' +
+        fit +
+        '<div class="prod__chips">' + chips + '</div>' +
+        note +
+      '</div>' +
+      '<div class="prod__foot">' +
+        '<a class="prod__wa" href="' + waLink(p) + '" target="_blank" rel="noopener" aria-label="Tanya atau order ' + esc(p.name) + ' via WhatsApp">' +
+          '<img src="https://cdn.simpleicons.org/whatsapp/160500" width="16" height="16" alt="">Order</a>' +
+      '</div>' +
+    '</article>';
+  }
+
+  function buildFilters(categories) {
+    var btns = '<button class="fbtn is-on" data-cat="all">Semua Produk</button>';
+    btns += categories.map(function (c) {
+      return '<button class="fbtn" data-cat="' + c.id + '">' + esc(c.label) + '</button>';
+    }).join('');
+    FILTERS.innerHTML = btns;
+
+    FILTERS.addEventListener('click', function (e) {
+      var b = e.target.closest('.fbtn'); if (!b) return;
+      FILTERS.querySelectorAll('.fbtn').forEach(function (x) { x.classList.remove('is-on'); });
+      b.classList.add('is-on');
+      applyFilter(b.getAttribute('data-cat'));
+    });
+  }
+
+  function applyFilter(cat) {
+    var cards = GRID.querySelectorAll('.prod');
+    var shown = 0;
+    cards.forEach(function (c) {
+      var ok = cat === 'all' || c.getAttribute('data-category') === cat;
+      c.style.display = ok ? '' : 'none';
+      if (ok) shown++;
+    });
+    setCount(shown);
+  }
+
+  function setCount(n) {
+    COUNT.innerHTML = '<b>' + n + '</b> produk';
+  }
+
+  function render(data) {
+    var labels = {};
+    (data.categories || []).forEach(function (c) { labels[c.id] = c.label; });
+
+    buildFilters(data.categories || []);
+    GRID.innerHTML = (data.products || []).map(function (p) {
+      return card(p, labels[p.category] || p.category);
+    }).join('');
+    setCount((data.products || []).length);
+
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  // Primary: data embedded via <script src="data/products.js"> — works over
+  // file:// (opened from disk) AND http://. Fallback: fetch the JSON when
+  // served over http and the global is somehow unavailable.
+  function loadCatalog() {
+    if (window.MA_PRODUCTS) { render(window.MA_PRODUCTS); return; }
+
+    fetch('data/products.json')
+      .then(function (r) { if (!r.ok) throw new Error('load failed'); return r.json(); })
+      .then(render)
+      .catch(function (err) {
+        GRID.innerHTML = '<p class="load-error">Katalog gagal dimuat. Silakan muat ulang halaman atau hubungi kami via WhatsApp.</p>';
+        console.error(err);
+      });
+  }
+
+  loadCatalog();
+
+  // wire CTA WhatsApp link
+  (function () {
+    var wa = (window.MA && window.MA.WA_LINK) || '#';
+    var e = document.getElementById('cta-wa');
+    if (e) { e.setAttribute('href', wa); e.setAttribute('target', '_blank'); e.setAttribute('rel', 'noopener'); }
+  })();
+})();
+</script>
+</body>
+</html>

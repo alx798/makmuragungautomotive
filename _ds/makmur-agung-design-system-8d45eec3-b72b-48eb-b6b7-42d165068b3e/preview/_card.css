@@ -1,0 +1,25 @@
+/* Shared shell for design-system preview cards.
+   Cards show specimens directly — no titles/framing (the asset
+   name renders outside the card). */
+@import url('../colors_and_type.css');
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--canvas);
+  color: var(--body);
+  font-family: var(--font-body);
+  padding: 22px 26px;
+  -webkit-font-smoothing: antialiased;
+}
+.row { display: flex; gap: 14px; align-items: stretch; flex-wrap: wrap; }
+.col { display: flex; flex-direction: column; gap: 14px; }
+.cap {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.mono { font-family: var(--font-mono); }

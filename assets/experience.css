@@ -1,0 +1,557 @@
+/* ============================================================
+   MAKMUR AGUNG — Homepage experience layer  (STUDIO rebuild)
+   --------------------------------------------------------------
+   "From light into the dark." A bright studio hero — the BMW
+   floats in a soft grey void carved by an interactive WebGL
+   light field — then the page dissolves into the brand's
+   cinematic near-black body (services, manifesto, rail, process).
+
+   No scanlines. No HUD. Clean, minimal, kinetic.
+   PROGRESSIVE ENHANCEMENT on site.css + colors_and_type.css.
+   If JS / GSAP / Three are missing, the static layout still
+   stands and nothing stays hidden. Honors prefers-reduced-motion.
+   ============================================================ */
+
+:root {
+  --ease-out: cubic-bezier(.22, .61, .36, 1);
+  --ease-io:  cubic-bezier(.65, .05, .36, 1);
+  --dim:      #2c313a;             /* unlit manifesto / outline text */
+
+  /* ---- Studio hero palette (light) ---- */
+  --studio-hi:   #c4c2c0;          /* lit pool behind the car      */
+  --studio-mid:  #9b9b9e;          /* backdrop wall                */
+  --studio-low:  #74757b;          /* edge / floor shade           */
+  --studio-edge: #54565d;          /* corners vignette             */
+  --ink:         #14161b;          /* hero headline on light       */
+  --ink-soft:    #3d414a;          /* hero body on light           */
+  --ink-mute:    #5d626b;          /* hero captions on light       */
+}
+
+/* page-wide scroll lock during the preloader */
+html.is-loading { overflow: hidden; }
+html.is-loading body { overflow: hidden; }
+
+/* repeat visit this session: intro already seen — never show the curtain */
+html.intro-seen #preloader { display: none !important; }
+
+/* let the JS-driven smooth scroll own the scrollbar timing */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+/* ============================================================
+   1. MINIMAL PRELOADER — light curtain
+   ============================================================ */
+.loader {
+  position: fixed; inset: 0; z-index: 200; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background:
+    radial-gradient(120% 100% at 50% 34%, #16181d 0%, #0c0d10 52%, #060708 100%);
+}
+.loader.is-done { pointer-events: none; }
+.loader__inner { position: relative; width: min(440px, 78vw); }
+.loader__mark {
+  font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
+  font-size: clamp(40px, 8.6vw, 78px); line-height: .9; letter-spacing: -1px;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.loader__word { display: block; color: var(--on-dark); transform: translateY(110%); }
+.loader__word--accent { color: var(--aozoom-orange); }
+.loader__meta {
+  display: flex; justify-content: space-between; align-items: baseline; margin: 22px 0 12px;
+  font-family: var(--font-display); font-weight: 600; font-size: 11px;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--muted);
+}
+.loader__pct b { color: var(--on-dark); font-size: 14px; }
+.loader__bar { position: relative; height: 2px; width: 100%; background: rgba(255,255,255,.12); overflow: hidden; }
+.loader__fill {
+  position: absolute; inset: 0; transform-origin: left; transform: scaleX(0);
+  background: var(--beam-gradient); box-shadow: var(--beam-glow);
+}
+
+/* ============================================================
+   2. SCROLL-PROGRESS BEAM + CUSTOM CURSOR
+   ============================================================ */
+.scroll-beam {
+  position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 95;
+  transform: scaleX(0); transform-origin: 0 50%;
+  background: var(--beam-gradient); box-shadow: var(--beam-glow);
+  pointer-events: none; will-change: transform;
+}
+
+.cursor { position: fixed; top: 0; left: 0; z-index: 210; pointer-events: none; opacity: 0; }
+.cursor__ring {
+  position: absolute; left: 0; top: 0; width: 38px; height: 38px; margin: -19px 0 0 -19px;
+  border: 1px solid var(--aozoom-orange); border-radius: 50%;
+  transition: width .25s var(--ease-out), height .25s var(--ease-out),
+              margin .25s var(--ease-out), background .25s ease, border-color .25s ease;
+}
+.cursor__dot {
+  position: absolute; left: 0; top: 0; width: 6px; height: 6px; margin: -3px 0 0 -3px;
+  border-radius: 50%; background: var(--aozoom-orange); box-shadow: 0 0 10px var(--aozoom-orange);
+  transition: opacity .2s ease;
+}
+.cursor__label {
+  position: absolute; left: 0; top: 0; transform: translate(-50%, 26px);
+  font-family: var(--font-display); font-weight: 700; font-size: 10px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: #160500; background: var(--aozoom-orange);
+  padding: 3px 8px; white-space: nowrap; opacity: 0; transition: opacity .2s ease;
+}
+body.cursor-on .cursor { opacity: 1; }
+.cursor.is-hover .cursor__ring { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: rgba(255,90,31,.08); }
+.cursor.is-hover .cursor__dot { opacity: 0; }
+.cursor.is-label .cursor__ring { width: 78px; height: 78px; margin: -39px 0 0 -39px; background: rgba(255,90,31,.1); }
+.cursor.is-label .cursor__label { opacity: 1; }
+.cursor.is-down .cursor__ring { width: 28px; height: 28px; margin: -14px 0 0 -14px; }
+body.cursor-on.cursor-native-hide,
+body.cursor-on.cursor-native-hide a,
+body.cursor-on.cursor-native-hide button { cursor: none; }
+
+/* ============================================================
+   3. HERO — "GRAPHITE STUDIO" (dark · full-bleed graded photo · headlight bloom)
+   ============================================================ */
+.hero {
+  position: relative; isolation: isolate; overflow: hidden;
+  min-height: calc(100svh - 76px); display: flex; flex-direction: column;
+  background: var(--canvas);
+}
+
+/* --- full-bleed studio photo, graded into graphite (floats toward cursor) --- */
+.hero__media { position: absolute; inset: 0; z-index: 0; overflow: hidden; will-change: transform; }
+.hero__photo {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 64% 54%;
+  transform: scale(1.05); transform-origin: 62% 56%;
+  will-change: transform, filter;
+  /* keep the footage clearly visible — only a light grade so the BMW + beam read crisp */
+  filter: brightness(.92) contrast(1.06) saturate(1.08);
+}
+
+/* warm bloom out of the angel-eye headlights — the brand's hero moment */
+.hero__bloom {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none; mix-blend-mode: screen;
+  background:
+    radial-gradient(19% 25% at 47% 61%, rgba(255,178,98,.52), rgba(255,120,48,.12) 46%, transparent 72%),
+    radial-gradient(25% 33% at 60% 58%, rgba(255,140,60,.30), transparent 70%),
+    radial-gradient(64% 74% at 56% 57%, rgba(255,108,42,.10), transparent 72%);
+}
+
+/* legibility ramp + cinematic vignette + dissolve into the dark body */
+.hero__scrim {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background:
+    /* focused legibility ramp behind the lead column — clears by mid-frame so the car stays crisp */
+    linear-gradient(98deg, rgba(6,7,9,.86) 0%, rgba(6,7,9,.60) 17%, rgba(6,7,9,.28) 34%, rgba(6,7,9,.05) 50%, rgba(6,7,9,0) 62%),
+    /* light top scrim under the header + gentle dissolve into --canvas at the base */
+    linear-gradient(180deg, rgba(6,7,9,.42) 0%, rgba(6,7,9,0) 20%, rgba(6,7,9,0) 56%, rgba(6,7,9,.55) 83%, var(--canvas) 100%),
+    /* soft cinematic vignette — light enough to keep the footage clear */
+    radial-gradient(150% 135% at 64% 46%, transparent 56%, rgba(3,4,6,.40) 100%);
+}
+
+/* --- lead column (compact, vertically-centred block — ByteTown rhythm) --- */
+.hero__wrap { position: relative; z-index: 4; flex: 1; display: flex; align-items: center; width: 100%; padding-top: 30px; padding-bottom: 26px; }
+.hero__lead { max-width: 560px; }
+
+.hero__kick { display: flex; align-items: center; gap: 13px; margin-bottom: 20px; }
+.hero__kick-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--aozoom-orange); box-shadow: 0 0 14px rgba(255,90,31,.85); flex: 0 0 auto; animation: kickPulse 2.6s ease-in-out infinite; }
+@keyframes kickPulse { 0%, 100% { box-shadow: 0 0 10px rgba(255,90,31,.55); } 50% { box-shadow: 0 0 20px rgba(255,90,31,.95); } }
+.hero__kick-tag { font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.9px; text-transform: uppercase; color: var(--body); text-shadow: 0 1px 6px rgba(0,0,0,.6); }
+
+.hero__title {
+  font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
+  font-size: clamp(38px, 5.6vw, 82px); line-height: .96; letter-spacing: -1px; color: var(--on-dark);
+  margin: 0; text-shadow: 0 1px 3px rgba(0,0,0,.55), 0 3px 38px rgba(0,0,0,.5);
+}
+.hero__title .line { display: block; overflow: hidden; padding-bottom: .04em; }
+.hero__title .line > span { display: inline-block; will-change: transform; }
+.hero__title .ignite { color: var(--aozoom-orange); }
+
+.hero__sub { margin: 22px 0 0; max-width: 440px; font-size: clamp(15px, 1.2vw, 17px); color: var(--body-strong); line-height: 1.6; font-weight: 300; text-shadow: 0 1px 8px rgba(0,0,0,.62); }
+.hero__sub em { font-style: normal; color: var(--aozoom-amber); font-weight: 500; }
+
+.hero__btns { display: flex; gap: 13px; margin-top: 30px; flex-wrap: wrap; }
+/* ByteTown-style CTA: solid, rounded, comfortable footprint */
+.hero__btns .btn { border-radius: 10px; }
+/* light outline button on the dark hero */
+.btn--line { border-color: rgba(255,255,255,.34); color: var(--on-dark); background: rgba(255,255,255,.02); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
+.btn--line:hover { background: rgba(255,255,255,.08); border-color: var(--on-dark); color: var(--on-dark); }
+
+.hero__meta { display: flex; align-items: stretch; gap: 26px; margin-top: 42px; flex-wrap: wrap; }
+.meta-item { display: flex; flex-direction: column; gap: 6px; }
+.meta-item .n { font-family: var(--font-display); font-weight: 700; font-size: 30px; line-height: 1; color: var(--on-dark); }
+.meta-item .n span { color: var(--aozoom-orange); font-size: .64em; }
+.meta-item .l { font-family: var(--font-display); font-weight: 600; font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); }
+.hero__meta .sep { width: 1px; background: var(--hairline-strong); }
+
+/* --- scroll cue (light on dark) --- */
+.scroll-cue {
+  position: absolute; left: 50%; bottom: 40px; transform: translateX(-50%); z-index: 5;
+  display: inline-flex; flex-direction: column; align-items: center; gap: 12px;
+  font-family: var(--font-display); font-weight: 600; font-size: 10px; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--muted);
+}
+.scroll-cue__rail { width: 24px; height: 38px; border: 1px solid rgba(255,255,255,.28); border-radius: 13px; position: relative; }
+.scroll-cue__rail::after { content: ""; position: absolute; left: 50%; top: 7px; width: 3px; height: 8px; margin-left: -1.5px; border-radius: 2px; background: var(--aozoom-orange); animation: scrollDot 1.8s ease-in-out infinite; }
+@keyframes scrollDot { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(13px); opacity: 0; } 100% { opacity: 0; } }
+
+/* ============================================================
+   4. CAPABILITY MARQUEE — dark handoff strip
+   ============================================================ */
+.marquee {
+  position: relative; z-index: 2; overflow: hidden; white-space: nowrap;
+  background: var(--canvas); border-bottom: 1px solid var(--hairline);
+}
+.marquee__track { display: inline-flex; gap: 0; will-change: transform; animation: marq 28s linear infinite; }
+.marquee__track span { display: inline-flex; align-items: center; padding: 18px 28px; font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--body); }
+.marquee__track span::after { content: ""; width: 6px; height: 6px; background: var(--aozoom-orange); transform: rotate(45deg); margin-left: 26px; }
+@keyframes marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ============================================================
+   5. SHARED SECTION HELPERS + GRIDS  (dark body)
+   ============================================================ */
+.sec-head__h { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: clamp(34px, 4.4vw, 56px); line-height: 1.02; color: var(--on-dark); margin: 16px 0 0; }
+.sec-head__lead { max-width: 40ch; font-size: clamp(15px, 1.3vw, 17px); color: var(--body); line-height: 1.65; }
+.eyebrow--center { justify-content: center; }
+.section--flush { padding-bottom: 0; }
+
+/* Landing page (beranda): center every section header like .benefits__head */
+[data-page="beranda"] .sec-head { flex-direction: column; align-items: center; text-align: center; gap: 18px; }
+[data-page="beranda"] .sec-head__lead { max-width: 60ch; margin-left: auto; margin-right: auto; }
+[data-page="beranda"] .rail__head { text-align: center; }
+
+/* Landing page (beranda): tighter vertical rhythm — less space above section headers */
+[data-page="beranda"] .section { padding-top: 56px; padding-bottom: 56px; }
+[data-page="beranda"] .section--tight { padding-top: 40px; padding-bottom: 40px; }
+[data-page="beranda"] .section--flush { padding-bottom: 0; }
+
+.svc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.tst-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.gallery { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 12px; }
+
+/* magnetic button shimmer */
+.fx-magnetic { will-change: transform; }
+.btn--orange { position: relative; overflow: hidden; }
+.btn--orange::after {
+  content: ""; position: absolute; top: 0; left: -130%; width: 60%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.5), transparent);
+  transform: skewX(-18deg); transition: left .55s ease; pointer-events: none;
+}
+.btn--orange:hover::after { left: 140%; }
+
+/* ============================================================
+   6. SERVICES  (cards get a tilt + reactive glow)
+   ============================================================ */
+.svc { position: relative; overflow: hidden; transform-style: preserve-3d; }
+.svc__glow {
+  position: absolute; width: 280px; height: 280px; border-radius: 50%; pointer-events: none;
+  left: var(--gx, 50%); top: var(--gy, 0%); transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255,90,31,.22), transparent 62%);
+  opacity: 0; transition: opacity .3s ease; z-index: 0;
+}
+.svc:hover .svc__glow { opacity: 1; }
+.svc > *:not(.svc__glow) { position: relative; z-index: 1; }
+.svc__no, .svc__ico, .svc h3, .svc p, .svc__list { transform: translateZ(24px); }
+
+/* ============================================================
+   7. KEY BENEFITS — why choose us (two-column)
+   ============================================================ */
+.benefits { background: var(--canvas); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+
+/* --- left-aligned header (bento style) --- */
+.benefits__head { max-width: 920px; margin: 0; text-align: left; }
+.benefits__badge {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-family: var(--font-display); font-weight: 600; font-size: 12px;
+  letter-spacing: 1.8px; text-transform: uppercase; color: var(--aozoom-orange);
+  padding: 7px 16px; border: 1px solid var(--hairline-strong); border-radius: var(--radius-full);
+  background: rgba(255,90,31,.06);
+}
+.benefits__badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--aozoom-orange); box-shadow: 0 0 10px rgba(255,90,31,.8); }
+.benefits__h { margin-top: 20px; }
+.benefits__h .accent { color: var(--aozoom-orange); }
+
+/* --- bento grid --- */
+.bento {
+  display: grid; margin-top: clamp(36px, 4vw, 52px);
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "a feature"
+    "b feature";
+  gap: clamp(16px, 1.6vw, 22px);
+}
+.bento__card {
+  position: relative; display: flex; flex-direction: column; align-items: flex-start;
+  padding: clamp(26px, 2.4vw, 36px);
+  background: var(--surface-card); border: 1px solid var(--hairline);
+  transition: border-color .25s ease, transform .25s ease;
+}
+.bento__card:hover { border-color: var(--hairline-strong); transform: translateY(-3px); }
+.bento__card:nth-child(1) { grid-area: a; }
+.bento__card:nth-child(2) { grid-area: b; }
+.bento__card--feature { grid-area: feature; }
+.bento__card--wide { grid-area: wide; }
+
+.bento__ico {
+  display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%;
+  border: 1px solid var(--hairline-strong); color: var(--aozoom-orange);
+  background: rgba(255,90,31,.05); transition: border-color .25s ease, transform .25s ease;
+}
+.bento__ico svg { width: 24px; height: 24px; }
+.bento__card:hover .bento__ico { border-color: var(--aozoom-orange); transform: translateY(-2px); }
+.bento__title { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: .3px; font-size: clamp(20px, 1.9vw, 25px); line-height: 1.12; color: var(--on-dark); margin: 22px 0 0; }
+.bento__copy { margin: 12px 0 0; font-size: 15px; line-height: 1.62; color: var(--body); max-width: 52ch; }
+
+/* --- featured (tall) card — brand-accent standout with CTA --- */
+.bento__card--feature {
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(255,90,31,.16), transparent 60%),
+    linear-gradient(165deg, #1b1109 0%, #120c08 55%, #0d0a08 100%);
+  border-color: rgba(255,90,31,.35);
+}
+.bento__card--feature:hover { border-color: var(--aozoom-orange); }
+.bento__card--feature .bento__ico { border-color: rgba(255,90,31,.45); background: rgba(255,90,31,.12); }
+.bento__card--feature .bento__copy { color: var(--body-strong); }
+.bento__cta { margin-top: clamp(26px, 3vw, 38px); }
+.bento__cta svg { width: 17px; height: 17px; }
+
+/* ============================================================
+   8. HALOGEN vs BI-LED comparison
+   ============================================================ */
+.compare-stage { margin-top: 40px; }
+.compare {
+  position: relative; overflow: hidden; user-select: none; touch-action: pan-y;
+  width: 100%; aspect-ratio: 21 / 9; min-height: 380px; --pos: 50%;
+  border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
+}
+.compare__img { position: absolute; inset: 0; }
+.compare__img img { width: 100%; height: 100%; object-fit: cover; object-position: center 62%; }
+.compare__img--halogen img { filter: brightness(.5) saturate(.7) sepia(.45) blur(1.4px) contrast(.92); }
+.compare__img--halogen::after { content: ""; position: absolute; inset: 0; background: radial-gradient(70% 60% at 50% 70%, rgba(255,196,120,.16), transparent 70%); }
+.compare__img--led { clip-path: inset(0 0 0 var(--pos)); }
+.compare__img--led::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 55% at 64% 72%, rgba(255,90,31,.22), transparent 66%); mix-blend-mode: screen; }
+.compare__line { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: var(--beam-gradient); box-shadow: var(--beam-glow); z-index: 4; }
+.compare__handle {
+  position: absolute; top: 50%; left: var(--pos); width: 56px; height: 56px; margin: -28px 0 0 -28px;
+  border-radius: 50%; z-index: 5; background: rgba(8,9,11,.72); border: 1px solid var(--aozoom-orange);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center;
+  color: var(--aozoom-amber); cursor: ew-resize; box-shadow: 0 0 24px rgba(255,90,31,.4); transition: transform .14s ease;
+}
+.compare__handle:active { transform: scale(.93); }
+.compare__handle svg { width: 22px; height: 22px; }
+.compare__tag { position: absolute; bottom: 18px; z-index: 4; font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; padding: 7px 12px; background: rgba(8,9,11,.66); border: 1px solid var(--hairline-strong); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.compare__tag--l { left: 18px; color: var(--muted); }
+.compare__tag--r { right: 18px; color: var(--aozoom-amber); border-color: var(--aozoom-orange); }
+
+/* ============================================================
+   9. PRODUCT RAIL — pinned horizontal scroll
+   ============================================================ */
+.rail { position: relative; background: var(--surface-soft); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+.rail__pin { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; padding: 56px 0; }
+.rail.is-pinnable { position: relative; }
+.rail.is-pinnable .rail__pin { position: sticky; top: 0; height: 100vh; min-height: 0; }
+.rail__head { padding: 0 48px; max-width: 1440px; margin: 0 auto 36px; width: 100%; }
+.rail__h { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: clamp(34px, 4.4vw, 56px); line-height: 1; color: var(--on-dark); margin: 14px 0 0; }
+.rail__note { margin-top: 12px; font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+.rail__note span { color: var(--aozoom-orange); }
+.rail__track { display: flex; gap: 18px; padding: 0 48px; will-change: transform; }
+.rail.is-pinnable .rail__track { padding-left: max(48px, calc((100vw - 1440px) / 2 + 48px)); }
+.rail:not(.is-pinnable) .rail__track { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 8px; }
+.rail:not(.is-pinnable) .pcard { scroll-snap-align: start; }
+.rail__progress { margin: 30px auto 0; width: min(260px, 60vw); height: 2px; background: var(--hairline); }
+.rail__progress span { display: block; height: 100%; width: 0; background: var(--beam-gradient); box-shadow: var(--beam-glow); }
+
+.pcard {
+  position: relative; flex: 0 0 auto; width: 340px; min-height: 440px; padding: 26px 26px 28px;
+  background: var(--surface-card); border: 1px solid var(--hairline);
+  display: flex; flex-direction: column; gap: 18px; overflow: hidden;
+  transition: border-color .22s ease, transform .22s ease;
+}
+.pcard:hover { border-color: var(--aozoom-orange); transform: translateY(-4px); }
+.pcard__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.pcard__badge { font-family: var(--font-display); font-weight: 700; font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--aozoom-orange); border: 1px solid var(--aozoom-orange); padding: 4px 9px; }
+.pcard__cat { font-family: var(--font-display); font-weight: 600; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-align: right; }
+.pcard__media { position: relative; margin: -26px -26px 2px; aspect-ratio: 1 / 1; overflow: hidden; background: #050608; border-bottom: 1px solid var(--hairline); }
+.pcard__media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s cubic-bezier(.22,.61,.36,1); }
+.pcard:hover .pcard__media img { transform: scale(1.05); }
+.pcard__beam { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--beam-gradient); box-shadow: var(--beam-glow); opacity: 0; transition: opacity .2s ease; z-index: 3; }
+.pcard:hover .pcard__beam { opacity: 1; }
+.pcard__tags { position: absolute; top: 12px; left: 12px; z-index: 2; display: flex; gap: 6px; }
+.pcard__tags .pcard__badge { background: rgba(8,9,11,.72); backdrop-filter: blur(4px); }
+.pcard__catTag { position: absolute; top: 12px; right: 12px; z-index: 2; font-family: var(--font-display); font-weight: 600; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--on-dark); background: rgba(8,9,11,.72); backdrop-filter: blur(4px); border: 1px solid var(--hairline); padding: 4px 9px; }
+.pcard__name { font-family: var(--font-display); font-weight: 700; font-size: 26px; text-transform: uppercase; line-height: 1; color: var(--on-dark); margin: 0; }
+.pcard__type { font-size: 13px; color: var(--muted); line-height: 1.45; margin: 6px 0 0; min-height: 2.6em; }
+.pcard__specs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+.pcard__spec { font-family: var(--font-display); font-weight: 600; font-size: 10px; letter-spacing: .8px; text-transform: uppercase; color: var(--body); background: var(--surface-elevated); border: 1px solid var(--hairline); padding: 5px 9px; }
+.pcard__spec b { color: var(--aozoom-amber); font-weight: 700; }
+.pcard__foot { display: flex; justify-content: space-between; align-items: stretch; gap: 10px; padding-top: 16px; border-top: 1px solid var(--hairline); margin-top: 4px; }
+.pcard__wa { flex: 1; display: flex; align-items: center; gap: 10px; min-width: 0; padding: 9px 12px; background: var(--surface-elevated); border: 1px solid var(--hairline); color: var(--on-dark); text-decoration: none; transition: background .18s ease, border-color .18s ease, color .18s ease; }
+.pcard__wa-ico { width: 28px; height: 28px; flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; background: #25d366; border-radius: 50%; }
+.pcard__wa-ico img { display: block; }
+.pcard__wa-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; line-height: 1.1; }
+.pcard__wa-txt b { font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: .2px; color: var(--on-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pcard__wa-txt small { font-size: 10px; letter-spacing: .6px; text-transform: uppercase; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pcard__wa:hover { background: rgba(37,211,102,.08); border-color: rgba(37,211,102,.45); }
+.pcard__cta { width: 40px; height: 40px; flex: 0 0 40px; align-self: center; border: 1px solid var(--hairline-strong); display: inline-flex; align-items: center; justify-content: center; color: var(--aozoom-amber); transition: background .18s ease, border-color .18s ease, color .18s ease; }
+.pcard:hover .pcard__cta { background: var(--aozoom-orange); border-color: var(--aozoom-orange); color: #160500; }
+.pcard__cta svg { width: 18px; height: 18px; }
+.pcard--all { align-items: center; justify-content: center; text-align: center; gap: 14px; background: transparent; border-style: dashed; padding: 26px; }
+.pcard--all .pcard__name { font-size: 22px; }
+.pcard--all .pcard__cta { width: 52px; height: 52px; border-radius: 50%; }
+
+/* ============================================================
+   10. PROCESS — beam-line timeline
+   ============================================================ */
+.process .steps { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 8px; }
+.steps__rail { position: absolute; left: 0; right: 0; top: 33px; height: 2px; background: var(--hairline); overflow: hidden; }
+.steps__rail-fill { position: absolute; inset: 0; transform-origin: left; transform: scaleX(0); background: var(--beam-gradient); box-shadow: var(--beam-glow); }
+.step { display: flex; flex-direction: column; gap: 16px; }
+.step__no { font-family: var(--font-display); font-weight: 700; font-size: 26px; width: 66px; height: 66px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--hairline-strong); background: var(--canvas); color: var(--hairline-strong); position: relative; z-index: 1; transition: color .3s ease, border-color .3s ease, box-shadow .3s ease; }
+.step.is-lit .step__no { color: var(--aozoom-orange); border-color: var(--aozoom-orange); box-shadow: 0 0 22px rgba(255,90,31,.35); }
+.step__body h4 { font-family: var(--font-display); font-weight: 700; font-size: 20px; text-transform: uppercase; color: var(--on-dark); margin: 0 0 8px; }
+.step__body p { font-size: 14px; line-height: 1.6; color: var(--body); margin: 0; }
+
+/* ============================================================
+   11. OUR WORK — brand wall (marques we've retrofitted)
+   Resting state: soft silver marks on the dark band. On hover each
+   tile lifts and the mark "ignites" to white with a warm Aozoom
+   glow — echoing the lighting work this shop does.
+   ============================================================ */
+.brands { background: var(--surface-soft); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+
+.brandwall {
+  list-style: none; padding: 0;
+  margin: clamp(34px, 4vw, 52px) auto 0; max-width: 1060px;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(14px, 1.6vw, 22px);
+}
+/* Light "chip" so every logo — colour, black, or white-bg — reads
+   consistently on the dark band. A fixed max-height locks each mark
+   to the same optical height so the grid reads neat despite the
+   mismatched source art; overflow:hidden is the safety net. Hover
+   lifts the chip and rings it with a warm Aozoom glow. */
+.brand {
+  box-sizing: border-box; height: 128px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 22px 28px; overflow: hidden;
+  background: #fff; border: 1px solid var(--hairline); border-radius: 14px;
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.brand img {
+  display: block; width: auto; height: auto;
+  max-width: 100%; max-height: 64px;
+  object-fit: contain; transition: transform .3s ease;
+}
+/* Per-brand optical balance — marks that fill their canvas edge-to-edge
+   are nudged down; emblem+wordmark lockups that carry built-in padding
+   are nudged up, so every logo reads at a similar weight. */
+.brand--suzuki img { max-height: 52px; }
+.brand--bmw img,
+.brand--mitsubishi img { max-height: 58px; }
+.brand--toyota img,
+.brand--honda img,
+.brand--hyundai img,
+.brand--wuling img { max-height: 72px; }
+
+.brand:hover {
+  transform: translateY(-5px); border-color: transparent;
+  box-shadow: 0 16px 38px rgba(0, 0, 0, .5), 0 0 0 1px rgba(255, 90, 31, .55), 0 0 22px rgba(255, 90, 31, .28);
+}
+.brand:hover img { transform: scale(1.05); }
+
+@media (max-width: 720px) {
+  .brandwall { grid-template-columns: repeat(2, 1fr); max-width: 460px; gap: 14px; }
+  .brand { height: 104px; padding: 18px 20px; }
+  .brand img { max-height: 54px; }
+  .brand--suzuki img { max-height: 44px; }
+  .brand--bmw img, .brand--mitsubishi img { max-height: 50px; }
+  .brand--toyota img, .brand--honda img, .brand--hyundai img, .brand--wuling img { max-height: 60px; }
+}
+
+/* ============================================================
+   12. GALLERY
+   ============================================================ */
+.gallery .g { position: relative; overflow: hidden; margin: 0; border: 1px solid var(--hairline); }
+.gallery .g img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease-out); }
+.gallery .g:hover img { transform: scale(1.06); }
+.gallery .g--wide { grid-column: span 2; }
+.gallery .g--tall { grid-row: span 2; }
+.gallery .g figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 28px 18px 14px;
+  font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--on-dark);
+  background: linear-gradient(0deg, rgba(8,9,11,.88), transparent);
+  transform: translateY(8px); opacity: 0; transition: transform .35s var(--ease-out), opacity .35s ease;
+}
+.gallery .g:hover figcaption { transform: none; opacity: 1; }
+
+/* ============================================================
+   13. CTA
+   ============================================================ */
+.cta { position: relative; overflow: hidden; }
+.cta__bg { position: absolute; inset: -8% 0; z-index: 0; }
+.cta__bg img { width: 100%; height: 116%; object-fit: cover; }
+.cta::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(8,9,11,.74), rgba(8,9,11,.92)); }
+.cta__glow { position: absolute; inset: 0; z-index: 1; background: radial-gradient(60% 60% at 50% 110%, rgba(255,90,31,.3), transparent 70%); pointer-events: none; }
+.cta__inner { position: relative; z-index: 2; text-align: center; padding: 104px 0; }
+.cta__h { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: clamp(38px, 6vw, 84px); line-height: .96; color: var(--on-dark); margin: 14px 0 0; }
+.cta p { margin: 20px auto 34px; max-width: 52ch; font-size: 17px; color: var(--body-strong); }
+.cta__btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* ============================================================
+   14. RESPONSIVE
+   ============================================================ */
+@media (max-width: 1100px) {
+  .svc-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 980px) {
+  .hero { min-height: calc(100svh - 64px); }
+  .hero__wrap { padding-top: 46px; padding-bottom: 4px; }
+  .hero__lead { max-width: 560px; }
+  /* frame the car front + glowing headlight as a tighter portrait crop */
+  .hero__photo { object-position: 60% 56%; transform: scale(1.12); }
+  .hero__bloom { background:
+    radial-gradient(26% 22% at 50% 64%, rgba(255,178,98,.50), rgba(255,120,48,.12) 48%, transparent 74%),
+    radial-gradient(34% 30% at 62% 60%, rgba(255,140,60,.28), transparent 72%); }
+  /* deepen the bottom dissolve so the stacked lead column stays readable */
+  .hero__scrim { background:
+    linear-gradient(180deg, rgba(6,7,9,.66) 0%, rgba(6,7,9,.10) 30%, rgba(6,7,9,.30) 55%, rgba(6,7,9,.86) 84%, var(--canvas) 100%),
+    radial-gradient(140% 120% at 60% 40%, transparent 38%, rgba(3,4,6,.62) 100%); }
+  .tst-grid { grid-template-columns: 1fr 1fr; }
+  .stat-row { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .process .steps { grid-template-columns: 1fr 1fr; gap: 28px 32px; }
+  .steps__rail { display: none; }
+  .compare { aspect-ratio: 16/10; }
+  .benefits__head { text-align: center; margin: 0 auto; }
+  .bento {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "a b"
+      "feature feature";
+  }
+}
+@media (max-width: 640px) {
+  .svc-grid, .tst-grid { grid-template-columns: 1fr; }
+  .stat-row { grid-template-columns: 1fr 1fr; }
+  .gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; }
+  .process .steps { grid-template-columns: 1fr; }
+  .hero__title { font-size: clamp(34px, 11vw, 58px); }
+  .hero__photo { object-position: 58% 58%; transform: scale(1.18); }
+  .marquee__track span { font-size: 12px; padding: 14px 18px; }
+  .pcard { width: 280px; min-height: 400px; }
+  .bento {
+    grid-template-columns: 1fr;
+    grid-template-areas: "a" "b" "feature";
+  }
+}
+
+/* ============================================================
+   15. REDUCED MOTION — strip the kinetic layer, keep it usable
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue, .loader, .cursor, .scroll-beam { display: none !important; }
+  html.is-loading, html.is-loading body { overflow: auto !important; }
+  .marquee__track { animation: none; }
+  .hero__title .line > span { transform: none; }
+  .benefits__item:hover .benefits__ico { transform: none; }
+  .steps__rail-fill { transform: scaleX(1); }
+  .step .step__no { color: var(--aozoom-orange); border-color: var(--aozoom-orange); }
+}

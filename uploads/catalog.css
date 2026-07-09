@@ -1,0 +1,349 @@
+/* ============================================================
+   catalog.css — Aozoom Product Catalog styles
+   Dark automotive theme. Accent: orange (#f07800).
+   Meant to be linked alongside your main style.css.
+   ============================================================ */
+
+/* ── Variables ─────────────────────────────────────────────── */
+:root {
+  --accent:       #f07800;
+  --accent-dim:   #c06000;
+  --bg-page:      #0f0f0f;
+  --bg-card:      #1a1a1a;
+  --bg-card-hov:  #222222;
+  --bg-spec:      #111111;
+  --border:       #2e2e2e;
+  --border-accent:#f07800;
+  --text-primary: #f0f0f0;
+  --text-muted:   #888888;
+  --text-dim:     #555555;
+  --tag-new:      #f07800;
+  --tag-laser:    #cc3300;
+  --tag-plug:     #1a7a40;
+  --radius:       6px;
+  --radius-lg:    10px;
+  --transition:   0.18s ease;
+}
+
+/* ── Page shell ────────────────────────────────────────────── */
+.catalog-page {
+  background: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100vh;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ── Hero banner ───────────────────────────────────────────── */
+.catalog-hero {
+  background: linear-gradient(135deg, #111 0%, #1c1007 60%, #0f0f0f 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 3rem 1.5rem 2.5rem;
+  text-align: center;
+}
+
+.catalog-hero__eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.catalog-hero__title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.15;
+  margin: 0 0 0.75rem;
+}
+
+.catalog-hero__title span {
+  color: var(--accent);
+}
+
+.catalog-hero__sub {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 520px;
+  margin: 0 auto 1.25rem;
+  line-height: 1.6;
+}
+
+.catalog-hero__cta {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.65rem 1.5rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: background var(--transition);
+}
+
+.catalog-hero__cta:hover {
+  background: var(--accent-dim);
+}
+
+/* ── Filter bar ────────────────────────────────────────────── */
+.catalog-controls {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #141414;
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1rem;
+}
+
+.catalog-controls__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#catalog-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.filter-btn {
+  background: var(--bg-card);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+.filter-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.catalog-count {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Product grid ──────────────────────────────────────────── */
+.catalog-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+#catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ── Product card ──────────────────────────────────────────── */
+.product-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  transition: border-color var(--transition), transform var(--transition);
+  overflow: hidden;
+}
+
+.product-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  padding: 1.1rem 1.1rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.6rem;
+  min-height: 1.4rem;
+}
+
+.tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  color: #fff;
+}
+
+.tag--new-arrival   { background: var(--tag-new); }
+.tag--laser         { background: var(--tag-laser); }
+.tag--plug-and-play { background: var(--tag-plug); }
+
+.spec-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.card-type {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.3rem;
+}
+
+.card-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem;
+  line-height: 1.2;
+}
+
+.vehicle-fit {
+  font-size: 0.75rem;
+  color: var(--accent);
+  margin: 0.25rem 0 0;
+}
+
+/* ── Specs table ───────────────────────────────────────────── */
+.card-specs {
+  background: var(--bg-spec);
+  padding: 0.75rem 1.1rem;
+  flex: 1;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #1e1e1e;
+}
+
+.spec-row:last-child {
+  border-bottom: none;
+}
+
+.spec-label {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.spec-value {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: right;
+  max-width: 60%;
+}
+
+/* ── Card footer ───────────────────────────────────────────── */
+.card-footer {
+  padding: 1rem 1.1rem 1.1rem;
+  border-top: 1px solid var(--border);
+}
+
+.card-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.price-label {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.price-amount {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.price-note {
+  font-size: 0.68rem;
+  color: #b87000;
+  margin: -0.25rem 0 0.6rem;
+  line-height: 1.4;
+}
+
+.btn-inquire {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: all var(--transition);
+  box-sizing: border-box;
+  letter-spacing: 0.04em;
+}
+
+.btn-inquire:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ── Error state ───────────────────────────────────────────── */
+.load-error {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 3rem;
+  grid-column: 1 / -1;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .catalog-hero {
+    padding: 2rem 1rem 1.75rem;
+  }
+
+  #catalog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-controls__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .catalog-count {
+    align-self: flex-end;
+  }
+}

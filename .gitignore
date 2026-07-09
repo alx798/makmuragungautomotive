@@ -1,0 +1,13 @@
+# Backup archive — too large for GitHub (100 MB limit), not needed on the live site
+Makmur Agung.zip
+
+# OS / editor cruft
+.thumbnail
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Dev-only scratch (uncomment if you don't want these on the site)
+# tweaks-panel.jsx
+# screenshots/
+# _ds/
