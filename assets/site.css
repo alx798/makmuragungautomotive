@@ -136,7 +136,15 @@ button { font-family: inherit; cursor: pointer; }
 .logo__mark { height: 30px; width: auto; display: block; flex: 0 0 auto; }
 .logo__text { line-height: .9; }
 .logo__name { display: block; font-family: var(--font-display); font-weight: 700; font-size: 23px; letter-spacing: .5px; text-transform: uppercase; color: var(--on-dark); white-space: nowrap; }
-.logo__sub { display: block; font-family: var(--font-display); font-weight: 600; font-size: 9px; letter-spacing: 3.5px; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+.logo__sub { display: block; font-family: var(--font-display); font-weight: 600; font-size: 9px; letter-spacing: 3.5px; text-transform: uppercase; color: var(--muted); margin-top: 4px; white-space: nowrap; }
+
+/* narrow phones: shrink wordmark so it never clips behind the nav actions */
+@media (max-width: 400px) {
+  .logo { gap: 9px; }
+  .logo__mark { height: 26px; }
+  .logo__name { font-size: 15px; }
+  .logo__sub { font-size: 7.5px; letter-spacing: 1.5px; }
+}
 
 /* mobile drawer */
 .drawer { position: fixed; inset: 0; z-index: 70; display: none; }
