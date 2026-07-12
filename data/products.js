@@ -73,7 +73,7 @@ window.MA_PRODUCTS = {
       "name": "Discoverer",
       "category": "premium",
       "type": "Intelligent LED & Laser Matrix Module",
-      "size": "3\"",
+      "size": "1.5\"",
       "color_temp": "5500K",
       "price_idr": 9500000,
       "warranty_years": 2,

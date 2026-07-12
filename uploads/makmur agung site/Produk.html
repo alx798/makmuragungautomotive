@@ -190,16 +190,8 @@
 
   function waLink(product) {
     var num = (window.MA && window.MA.WA_NUMBER) || '6281330349883';
-    var lines = [
-      'Halo Aozoom Malang, saya tertarik dengan produk berikut:',
-      '',
-      'Produk: ' + product.name,
-      'Tipe: ' + product.type,
-      'Harga: ' + rupiah(product.price_idr),
-      '',
-      'Bisa info ketersediaan & estimasi pemasangan?'
-    ];
-    return 'https://wa.me/' + num + '?text=' + encodeURIComponent(lines.join('\n'));
+    var text = 'Bisa info ketersediaan & estimasi pemasangan?';
+    return 'https://wa.me/' + num + '?text=' + encodeURIComponent(text);
   }
 
   function specRow(icon, key, value) {
